@@ -488,11 +488,11 @@ const HeroSection = () => {
         />
       </motion.div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
           {/* Left column - Premium orchestrated entrance */}
           <motion.div
-            className="text-center lg:text-left perspective-1000"
+            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start"
             style={{
               transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)`
             }}
@@ -539,7 +539,7 @@ const HeroSection = () => {
 
             {/* Title with orchestrated stagger */}
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-center lg:text-left"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -850,7 +850,7 @@ const HeroSection = () => {
 
             {/* Trust indicators */}
             <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-8 mt-10"
+              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-8 mt-10 w-full"
               initial={{ opacity: 0, y: 40 }}
               animate={{ 
                 opacity: animationStage >= 6 ? 1 : 0, 
