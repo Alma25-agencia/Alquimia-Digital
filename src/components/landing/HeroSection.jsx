@@ -489,17 +489,17 @@ const HeroSection = () => {
       </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen py-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
           {/* Left column - Premium orchestrated entrance */}
           <motion.div
-            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start w-full"
+            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start mx-auto lg:mx-0"
             style={{
               transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)`
             }}
           >
             {/* Logo with premium entrance */}
             <motion.div
-              className="relative mb-8 transform-gpu flex justify-center lg:justify-start w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:mx-0 mx-auto"
+              className="relative mb-8 transform-gpu flex justify-center lg:justify-start max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none mx-auto lg:mx-0"
               variants={logoVariants}
               initial="hidden"
               animate={animationStage >= 2 ? "visible" : "hidden"}
@@ -539,7 +539,7 @@ const HeroSection = () => {
 
             {/* Title with orchestrated stagger */}
             <motion.h1 
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-center lg:text-left w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:mx-0 mx-auto"
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-center lg:text-left max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none mx-auto lg:mx-0"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -577,12 +577,12 @@ const HeroSection = () => {
 
             {/* Description with premium entrance */}
             <motion.div
-              className="relative w-full flex justify-center lg:justify-start"
+              className="relative flex justify-center lg:justify-start w-auto lg:w-full"
               variants={descriptionVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
             >
-              <p className="relative text-base xs:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:mx-0 mx-auto">
+              <p className="relative text-base xs:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none mx-auto lg:mx-0">
                 Creamos asistentes personalizados con IA que entienden tu negocio,
                 responden dudas y automatizan tareas,{' '}
                 <motion.span 
@@ -604,7 +604,7 @@ const HeroSection = () => {
 
             {/* Buttons with premium entrance */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start w-full px-2 sm:px-0 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:mx-0 mx-auto"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start px-2 sm:px-0 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none mx-auto lg:mx-0"
               variants={buttonVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
@@ -842,7 +842,7 @@ const HeroSection = () => {
 
             {/* Trust indicators */}
             <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:mx-0 mx-auto"
+              className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 mt-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 40 }}
               animate={{ 
                 opacity: animationStage >= 6 ? 1 : 0, 
