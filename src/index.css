@@ -10,19 +10,19 @@
   --card-foreground: 210 40% 98%;
   --popover: 220 20% 6%;
   --popover-foreground: 210 40% 98%;
-  --primary: 262 83% 58%;
+  --primary: 218 91% 60%;
   --primary-foreground: 210 40% 98%;
   --secondary: 220 14% 14%;
   --secondary-foreground: 210 40% 98%;
   --muted: 220 14% 14%;
   --muted-foreground: 215 20% 65%;
-  --accent: 220 14% 14%;
+  --accent: 158 64% 52%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 62% 30%;
   --destructive-foreground: 210 40% 98%;
   --border: 220 13% 18%;
   --input: 220 13% 18%;
-  --ring: 262 83% 58%;
+  --ring: 158 64% 52%;
   --radius: 0.5rem;
 }
 
@@ -45,40 +45,38 @@ body {
 
 /* Efecto de cristal (Glassmorphism) */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.05); /* Fondo semitransparente */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque de fondo */
-  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil del cristal */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  overflow: hidden; /* **Importante** para recortar el pseudo-elemento del borde */
-  position: relative; /* **Importante** para posicionar el pseudo-elemento del borde */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
 }
 
 /* Contenedor de la tarjeta de precio */
 .price-card {
-  position: relative; /* Necesario para posicionar el pseudo-elemento */
-  z-index: 1; /* Asegura que el contenido de la tarjeta esté por encima del borde animado */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transiciones para escala y sombra de Tailwind */
-  border: 1px solid transparent; /* Oculta el borde inicial de Tailwind */
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 1px solid transparent;
 }
 
-/* Pseudo-elemento para el brillo (glowing border) - ¡NUEVO EFECTO AQUÍ! */
+/* Pseudo-elemento para el brillo (glowing border) */
 .price-card::before {
   content: '';
   position: absolute;
-  /* top, left, width, height ahora cubren la tarjeta completamente */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* El degradado que formará el resplandor */
-  background: linear-gradient(45deg, #8B5CF6, #EC4899); /* Degradado morado a rosa */
-  border-radius: inherit; /* Hereda el border-radius del padre */
-  z-index: -1; /* Envía el brillo detrás del contenido de la tarjeta */
-  opacity: 0; /* Empieza invisible */
-  transform: scale(0.98); /* Ligeramente más pequeño para una animación de entrada suave */
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transición para la aparición */
-  filter: blur(8px); /* Aplica un desenfoque para crear el efecto de resplandor */
+  background: linear-gradient(45deg, #2563EB, #10B981);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  filter: blur(8px);
 }
 
 /* Animación de pulsación sutil para el halo */
@@ -90,9 +88,9 @@ body {
 
 /* Efecto al pasar el ratón (hover) */
 .price-card:hover::before {
-  opacity: 1; /* Hace visible el brillo */
-  transform: scale(1); /* Expande a tamaño completo */
-  animation: pulse-halo 2s infinite alternate; /* Inicia la animación de pulsación */
+  opacity: 1;
+  transform: scale(1);
+  animation: pulse-halo 2s infinite alternate;
 }
 
 /* Asegura que el contenido de la tarjeta esté encima del brillo */
@@ -101,100 +99,118 @@ body {
   z-index: 2;
 }
 
-/* Estilos para texto con degradado (actualizado para coincidir con el borde) */
+/* Estilos para texto con degradado */
 .gradient-text {
-  background: linear-gradient(to right, #8B5CF6, #EC4899); /* Degradado purple-500 a pink-500 */
+  background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /*
   ---
-  Estilos para Globos de Chat (Chat Bubbles) - Ajustados
+  Estilos para Globos de Chat (Chat Bubbles)
   ---
 */
 .chat-bubble {
   position: relative;
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
   line-height: 1.25rem;
-  max-width: 80%; /* Sigue siendo crucial para que el globo no ocupe todo el ancho */
-  word-wrap: break-word; /* Asegura que el texto largo se rompa */
-  padding: 8px 12px; /* Add consistent padding for messages */
-  color: white; /* Ensure text is visible on colored bubbles */
+  max-width: 80%;
+  word-wrap: break-word;
+  padding: 8px 12px;
+  color: white;
+  animation: bubble-appear 0.3s ease-out;
 }
 
-/* Flecha para mensajes del usuario (verde, alineado a la derecha del contenedor) */
+@keyframes bubble-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Flecha para mensajes del usuario */
 .chat-bubble.user-message {
-  background-color: #34d399; /* Corresponds to green-600 */
-  /* Rounded corners, with a slightly sharper bottom-right for the tail */
+  background-color: #10B981;
   border-radius: 12px 12px 2px 12px;
-  margin-left: auto; /* Pushes the bubble to the right */
+  margin-left: auto;
 }
 
 .chat-bubble.user-message::after {
   content: '';
   position: absolute;
-  /* Tail should point downwards from the bottom-right */
-  bottom: -8px; /* Position it slightly below the bubble */
-  right: 12px; /* Position it horizontally from the right edge. Adjust as needed. */
+  bottom: -8px;
+  right: 12px;
   width: 16px;
   height: 16px;
-  background-color: #34d399; /* Match bubble color */
-  /* This clip-path creates an inverted triangle (V-shape) pointing downwards */
+  background-color: #10B981;
   clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
   z-index: -1;
 }
 
-/* Flecha para mensajes del asistente (azul, alineado a la izquierda del contenedor) */
+/* Flecha para mensajes del asistente */
 .chat-bubble.assistant-message {
-  background-color: #3b82f6; /* Corresponds to blue-600 */
-  /* Rounded corners, with a slightly sharper bottom-left for the tail */
+  background-color: #2563EB;
   border-radius: 12px 12px 12px 2px;
-  margin-right: auto; /* Pushes the bubble to the left */
+  margin-right: auto;
 }
 
 .chat-bubble.assistant-message::after {
   content: '';
   position: absolute;
-  /* Tail should point downwards from the bottom-left */
-  bottom: -8px; /* Position it slightly below the bubble */
-  left: 12px; /* Position it horizontally from the left edge. Adjust as needed. */
+  bottom: -8px;
+  left: 12px;
   width: 16px;
   height: 16px;
-  background-color: #3b82f6; /* Match bubble color */
-  /* This clip-path creates an inverted triangle (V-shape) pointing downwards */
+  background-color: #2563EB;
   clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
   z-index: -1;
 }
 
 /* Animación de "escribiendo" (typing-dots) */
 .typing-dots {
-  display: flex; /* Los puntos estarán en una fila */
-  align-items: center; /* Alinea los puntos verticalmente en el centro */
+  display: flex;
+  align-items: center;
   margin-top: 5px;
-  margin-right: auto; /* Mantiene el bloque de puntos alineado a la izquierda */
-  font-size: 0.875rem; /* text-sm, para un tamaño consistente */
-  color: #a78bfa; /* Morado-400 para consistencia */
-  padding: 4px 8px; /* Padding del contenedor de los puntos */
+  margin-right: auto;
+  font-size: 0.875rem;
+  color: #10B981;
+  padding: 4px 8px;
 }
 
-.typing-dots span { /* Dirige todos los spans dentro de .typing-dots (los puntos) */
+.typing-dots span {
   width: 6px;
   height: 6px;
-  background-color: #a78bfa; /* purple-400 */
+  background-color: #10B981;
   border-radius: 50%;
-  margin-right: 2px; /* Pequeño margen entre los puntos */
+  margin-right: 2px;
   animation: bounce 1.4s infinite ease-in-out;
-  flex-shrink: 0; /* Evita que los puntos se encojan */
+  flex-shrink: 0;
 }
 
-/* Quita el margen derecho del último punto */
 .typing-dots span:last-child {
   margin-right: 0px;
 }
 
-/* Re-targeting de los delays de animación para los puntos */
 .typing-dots span:nth-child(1) {
   animation-delay: -0.32s;
 }
@@ -205,7 +221,6 @@ body {
   animation-delay: 0s;
 }
 
-
 @keyframes bounce {
   0%, 80%, 100% {
     transform: translateY(0);
@@ -215,24 +230,25 @@ body {
   }
 }
 
-/* Estilos para el scrollbar personalizado (opcional) */
+/* Estilos para el scrollbar personalizado */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #2d3748; /* bg-gray-800 */
+  background: #2d3748;
   border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #6b46c1; /* Similar a purple-600 */
+  background: #2563EB;
   border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #805ad5; /* Un tono más claro al pasar el ratón */
+  background: #3B82F6;
 }
 
+/* Fondo con gradiente */
 .gradient-bg {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #1e40af 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 25%, #2563EB 50%, #0F172A 100%);
 }
 
 .floating-animation {
@@ -244,19 +260,21 @@ body {
   50% { transform: translateY(-20px); }
 }
 
+/* Efecto pulse-glow */
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes pulse-glow {
-  from { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-  to { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+  from { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+  to { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
 }
 
 .scroll-indicator {
   animation: bounce 2s infinite;
 }
 
+/* Feature cards */
 .feature-card {
   transition: all 0.3s ease;
   position: relative;
@@ -270,7 +288,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
   transition: left 0.5s;
 }
 
@@ -280,24 +298,27 @@ body {
 
 .feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
 }
 
+/* FAQ items */
 .faq-item {
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  background: rgba(139, 92, 246, 0.05);
+  background: rgba(16, 185, 129, 0.05);
 }
 
+/* Hero pattern */
 .hero-pattern {
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
 }
 
+/* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.5), transparent);
 }

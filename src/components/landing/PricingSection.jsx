@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { supabase } from '@/lib/supabaseClient'; // <-- ¡HE REVERTIDO ESTA LÍNEA A SU ESTADO ANTERIOR Y CORRECTO!
-import { CheckCircle, Star, Shield, Wrench as Tool, Zap } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
+import { CheckCircle, Star, Shield, Wrench as Tool, Zap, Sparkles, TrendingUp } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -25,7 +25,6 @@ import {
 } from '@/components/ui/select';
 
 const pricingPlansData = [
-  // Tarjeta: Automatización de Procesos
   {
     name: "Automatización de Procesos",
     price: "Presupuesto Personalizado",
@@ -39,9 +38,10 @@ const pricingPlansData = [
     maintenanceNote: "Los costes de mantenimiento se adaptarán a la complejidad y alcance de la solución implementada. Incluye soporte técnico y posibles mejoras.",
     popular: false,
     planIdentifier: "AUTOMATIZACION_PROCESOS",
-    hasCustomBudgetOptions: true
+    hasCustomBudgetOptions: true,
+    icon: TrendingUp,
+    gradient: "from-primary-500 to-accent-500"
   },
-  // Tarjetas existentes
   {
     name: "RAG Información General",
     price: "Desde 1.200 €",
@@ -51,8 +51,10 @@ const pricingPlansData = [
       "Integración con tu canal de consulta (Telegram, web, etc.)",
     ],
     maintenanceNote: "Mantenimiento necesario (gestión de tokens, actualizaciones, soporte técnico, etc.) no incluido. Se determinará según las necesidades de cada proyecto.",
-    popular: false,
-    planIdentifier: "RAG_INICIAL"
+    popular: true,
+    planIdentifier: "RAG_INICIAL",
+    icon: Zap,
+    gradient: "from-accent-500 to-primary-500"
   },
   {
     name: "RAG Educativo — Tutor Virtual",
@@ -64,14 +66,16 @@ const pricingPlansData = [
     ],
     maintenanceNote: "Mantenimiento necesario (gestión de tokens, actualizaciones, soporte técnico profesional, etc.) no incluido. Se determinará según las necesidades de cada proyecto.",
     popular: false,
-    planIdentifier: "RAG_EDUCATIVO"
+    planIdentifier: "RAG_EDUCATIVO",
+    icon: Shield,
+    gradient: "from-primary-600 to-accent-400"
   }
 ];
 
 const PricingSection = () => {
   const { toast } = useToast();
-
   const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
   const [formData, setFormData] = useState({
     nombre: '',
     apellidos: '',
@@ -152,7 +156,7 @@ const PricingSection = () => {
     } catch (error) {
       toast({
         title: "Error al solicitar demo",
-        description: "Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo. Asegúrate de que todos los campos sean correctos.",
+        description: "Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
       console.error('Error inserting demo request:', error);
@@ -160,240 +164,319 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="pt-9 pb-12">
-      <div className="container mx-auto px-6">
+    <section className="relative pt-16 pb-16 overflow-hidden">
+      {/* Fondo con gradiente y patrón */}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900"></div>
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header con animación mejorada */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-6"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 bg-accent-500/10 backdrop-blur-sm border border-accent-500/20 rounded-full px-3 py-1.5 mb-4"
+          >
+            <Sparkles className="w-3 h-3 text-accent-400" />
+            <span className="text-accent-400 text-xs font-medium">Soluciones Profesionales</span>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             <span className="gradient-text">Precios transparentes</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
+          <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
             Soluciones profesionales con precios claros y directos.
           </p>
         </motion.div>
 
-        {/* El contenedor del grid principal debe tener items-stretch para que las tarjetas se estiren */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
+        {/* Grid de tarjetas mejorado */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
           {pricingPlansData.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`
-                price-card glass-effect rounded-2xl px-10 pt-2 pb-2 relative flex flex-col
-                transform transition-all duration-300 ease-in-out
-                hover:scale-[1.03]
-                hover:z-10
-                ${plan.popular ? 'ring-2 ring-purple-500 scale-105' : ''}
-              `}
+              onHoverStart={() => setHoveredCard(index)}
+              onHoverEnd={() => setHoveredCard(null)}
+              className="relative group"
             >
-              {plan.popular && (
-                <div className="absolute top-1 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-                    <Star className="w-4 h-4" />
-                    Más Popular
-                  </div>
-                </div>
-              )}
+              {/* Efecto de resplandor en hover */}
+              <motion.div
+                className={`absolute -inset-0.5 bg-gradient-to-r ${plan.gradient} rounded-xl blur opacity-0 group-hover:opacity-50 transition duration-500`}
+                animate={{
+                  opacity: hoveredCard === index ? 0.5 : 0,
+                }}
+              />
 
-              {/* === BLOQUE 1: Título del Plan y Precio === */}
-              {/* min-h: Asegurarse de que este bloque tenga una altura consistente. */}
-              {/* Aplicamos mt-1.5 (6px) al contenedor completo del título y precio de "Automatización" */}
-              <div className={`text-center mb-4 flex-shrink-0 flex flex-col justify-end min-h-[130px]
-                ${plan.planIdentifier === 'AUTOMATIZACION_PROCESOS' ? 'mt-1.5' : ''}`}>
-                {/* Aplicamos mt-[-1] (4px) al h3 solo para RAG_INICIAL */}
-                <h3 className={`text-2xl font-bold text-white mb-2 ${plan.planIdentifier === 'RAG_INICIAL' ? '-mt-1' : ''}`}>
+              {/* Tarjeta principal */}
+              <motion.div
+                className={`
+                  relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-5 pt-4 pb-5 
+                  h-full flex flex-col transition-all duration-500 ease-out
+                  ${plan.popular ? 'ring-2 ring-accent-500/50 scale-105' : ''}
+                `}
+                whileHover={{ 
+                  y: -8,
+                  scale: plan.popular ? 1.08 : 1.03,
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              >
+                {/* Badge de popular mejorado */}
+                {plan.popular && (
+                  <motion.div 
+                    className="absolute -top-3 left-1/2 transform -translate-x-1/2"
+                    initial={{ scale: 0, rotate: -10 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="bg-gradient-to-r from-accent-500 to-accent-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+                      <Star className="w-3 h-3" />
+                      Más Popular
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Icono del plan */}
+                <motion.div 
+                  className="flex justify-center mb-4"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <div className={`w-12 h-12 bg-gradient-to-r ${plan.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <plan.icon className="w-6 h-6 text-white" />
+                  </div>
+                </motion.div>
+
+                {/* Título y precio */}
+                <div className="text-center mb-4 flex-shrink-0">
+                  <h3 className="text-lg font-bold text-white mb-2 leading-tight">
                     {plan.name}
-                </h3>
-                <div className="text-3xl font-bold gradient-text">
+                  </h3>
+                  <motion.div 
+                    className="text-2xl font-bold gradient-text"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
                     {plan.price}
-                </div>
-              </div>
-
-              {/* === BLOQUE 2: Contenedor principal de Descripción y Características === */}
-              <div className="flex flex-col flex-grow">
-                {/* === SUB-BLOQUE 2.1: Descripción === */}
-                {/* min-h: Asegurarse de que este bloque empuje el contenido hacia abajo y las descripciones se alineen. */}
-                <div className="mb-6 flex-shrink-0 flex flex-col justify-end min-h-[170px]">
-                    <p className="text-gray-300 text-sm leading-relaxed w-full">
-                        {plan.description}
-                    </p>
+                  </motion.div>
                 </div>
 
-                {/* === SUB-BLOQUE 2.2: "Incluye:" y Lista de Características === */}
-                {/* min-h: Asegurarse de que sea suficiente para la lista más larga (Automatización de Procesos). */}
+                {/* Descripción */}
+                <div className="mb-4 flex-shrink-0">
+                  <p className="text-neutral-300 text-xs leading-relaxed">
+                    {plan.description}
+                  </p>
+                </div>
+
+                {/* Características */}
                 <div className="flex-grow flex-shrink-0">
-                    <p className="text-white font-semibold mb-3">Incluye:</p>
-                    <ul className="space-y-3 mb-6 w-full min-h-[150px]">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                          <span className="text-gray-300 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <p className="text-white font-semibold mb-3 flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-accent-400" />
+                    Incluye:
+                  </p>
+                  <ul className="space-y-2 mb-4">
+                    {plan.features.map((feature, featureIndex) => (
+                      <motion.li 
+                        key={featureIndex} 
+                        className="flex items-start gap-2"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * featureIndex }}
+                        viewport={{ once: true }}
+                      >
+                        <CheckCircle className="w-3 h-3 text-accent-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-neutral-300 text-xs leading-relaxed">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
 
-              {/* === BLOQUE 3: Mantenimiento y Botón === */}
-              <div className="mt-auto flex-shrink-0">
-                <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4 mb-6">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Tool className="w-5 h-5 text-purple-400" />
-                    <p className="text-purple-300 font-semibold text-sm">Mantenimiento Esencial</p>
-                  </div>
-                  <p className="text-gray-400 text-xs leading-relaxed">{plan.maintenanceNote}</p>
-                </div>
+                {/* Mantenimiento */}
+                <div className="mt-auto flex-shrink-0">
+                  <motion.div 
+                    className="bg-accent-500/10 border border-accent-500/20 rounded-lg p-3 mb-4 backdrop-blur-sm"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <Tool className="w-4 h-4 text-accent-400" />
+                      <p className="text-accent-300 font-semibold text-xs">Mantenimiento Esencial</p>
+                    </div>
+                    <p className="text-neutral-400 text-xs leading-relaxed">{plan.maintenanceNote}</p>
+                  </motion.div>
 
-                <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
-                  <DialogTrigger asChild>
-                    <Button
-                      onClick={() => openDemoModal(plan.name)}
-                      size="xl"
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 pulse-glow group"
-                      variant="default"
-                    >
-                      <Zap className="w-5 h-5 mr-2.5 transition-transform duration-300 group-hover:scale-110" />
-                      Solicitar Demo Gratuita
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px] bg-gray-800 text-white border-gray-700">
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl gradient-text">Solicita tu Demo Personalizada</DialogTitle>
-                      <DialogDescription className="text-gray-400">
-                        Completa el formulario para que podamos preparar una demo a tu medida.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleDemoSubmit} className="grid gap-4 py-4">
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="nombre" className="text-right">
-                          Nombre *
-                        </Label>
-                        <Input
-                          id="nombre"
-                          value={formData.nombre}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="apellidos" className="text-right">
-                          Apellidos
-                        </Label>
-                        <Input
-                          id="apellidos"
-                          value={formData.apellidos}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="email" className="text-right">
-                          Email *
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="telefono" className="text-right">
-                          Teléfono
-                        </Label>
-                        <Input
-                          id="telefono"
-                          type="tel"
-                          value={formData.telefono}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="empresa" className="text-right">
-                          Empresa
-                        </Label>
-                        <Input
-                          id="empresa"
-                          value={formData.empresa}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-start gap-4">
-                        <Label htmlFor="descripcion_solicitud" className="text-right pt-2">
-                          Descripción *
-                        </Label>
-                        <Textarea
-                          id="descripcion_solicitud"
-                          value={formData.descripcion_solicitud}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white min-h-[80px]"
-                          placeholder="Describe brevemente qué necesitas y para qué tipo de negocio..."
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="tipo_negocio" className="text-right">
-                          Tipo de Negocio
-                        </Label>
-                        <Input
-                          id="tipo_negocio"
-                          value={formData.tipo_negocio}
-                          onChange={handleInputChange}
-                          className="col-span-3 bg-gray-700 border-gray-600 text-white"
-                          placeholder="Ej: E-commerce, Educación, Consultoría..."
-                        />
-                      </div>
-
-                      {formData.plan_interesado === "Automatización de Procesos" && (
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="presupuesto_estimado" className="text-right">
-                            Presupuesto Estimado *
-                          </Label>
-                          <Select
-                            onValueChange={(value) => handleSelectChange(value, 'presupuesto_estimado')}
-                            value={formData.presupuesto_estimado}
-                            required
-                          >
-                            <SelectTrigger className="col-span-3 bg-gray-700 border-gray-600 text-white">
-                              <SelectValue placeholder="Selecciona un rango" />
-                            </SelectTrigger>
-                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                              <SelectItem value="750-2500€">750 a 2500€</SelectItem>
-                              <SelectItem value="2500-6000€">2500 a 6000€</SelectItem>
-                              <SelectItem value="6000€+">Desde 6000€</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      )}
-
-                      <Input
-                        id="plan_interesado"
-                        type="hidden"
-                        value={formData.plan_interesado}
-                        readOnly
-                      />
-                      <DialogFooter className="mt-4">
-                        <Button type="submit" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
-                          Enviar Solicitud
+                  {/* Botón mejorado */}
+                  <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
+                    <DialogTrigger asChild>
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <Button
+                          onClick={() => openDemoModal(plan.name)}
+                          size="lg"
+                          className={`w-full bg-gradient-to-r ${plan.gradient} hover:opacity-90 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group text-sm py-2.5`}
+                        >
+                          {/* Efecto de brillo en hover */}
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                            initial={{ x: "-100%" }}
+                            whileHover={{ x: "200%" }}
+                            transition={{ duration: 0.6 }}
+                          />
+                          <Zap className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110 relative z-10" />
+                          <span className="relative z-10">Solicitar Demo Gratuita</span>
                         </Button>
-                      </DialogFooter>
-                    </form>
-                  </DialogContent>
-                </Dialog>
-              </div>
+                      </motion.div>
+                    </DialogTrigger>
+
+                    {/* Modal actualizado */}
+                    <DialogContent className="sm:max-w-[425px] bg-neutral-800 text-white border-neutral-700">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl gradient-text">Solicita tu Demo Personalizada</DialogTitle>
+                        <DialogDescription className="text-neutral-400">
+                          Completa el formulario para que podamos preparar una demo a tu medida.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form onSubmit={handleDemoSubmit} className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="nombre" className="text-right">
+                            Nombre *
+                          </Label>
+                          <Input
+                            id="nombre"
+                            value={formData.nombre}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                            required
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="apellidos" className="text-right">
+                            Apellidos
+                          </Label>
+                          <Input
+                            id="apellidos"
+                            value={formData.apellidos}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="email" className="text-right">
+                            Email *
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                            required
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="telefono" className="text-right">
+                            Teléfono
+                          </Label>
+                          <Input
+                            id="telefono"
+                            type="tel"
+                            value={formData.telefono}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="empresa" className="text-right">
+                            Empresa
+                          </Label>
+                          <Input
+                            id="empresa"
+                            value={formData.empresa}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-start gap-4">
+                          <Label htmlFor="descripcion_solicitud" className="text-right pt-2">
+                            Descripción *
+                          </Label>
+                          <Textarea
+                            id="descripcion_solicitud"
+                            value={formData.descripcion_solicitud}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white min-h-[80px] focus:border-accent-500"
+                            placeholder="Describe brevemente qué necesitas y para qué tipo de negocio..."
+                            required
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="tipo_negocio" className="text-right">
+                            Tipo de Negocio
+                          </Label>
+                          <Input
+                            id="tipo_negocio"
+                            value={formData.tipo_negocio}
+                            onChange={handleInputChange}
+                            className="col-span-3 bg-neutral-700 border-neutral-600 text-white focus:border-accent-500"
+                            placeholder="Ej: E-commerce, Educación, Consultoría..."
+                          />
+                        </div>
+
+                        {formData.plan_interesado === "Automatización de Procesos" && (
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="presupuesto_estimado" className="text-right">
+                              Presupuesto Estimado *
+                            </Label>
+                            <Select
+                              onValueChange={(value) => handleSelectChange(value, 'presupuesto_estimado')}
+                              value={formData.presupuesto_estimado}
+                              required
+                            >
+                              <SelectTrigger className="col-span-3 bg-neutral-700 border-neutral-600 text-white">
+                                <SelectValue placeholder="Selecciona un rango" />
+                              </SelectTrigger>
+                              <SelectContent className="bg-neutral-800 border-neutral-700 text-white">
+                                <SelectItem value="750-2500€">750 a 2500€</SelectItem>
+                                <SelectItem value="2500-6000€">2500 a 6000€</SelectItem>
+                                <SelectItem value="6000€+">Desde 6000€</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+
+                        <Input
+                          id="plan_interesado"
+                          type="hidden"
+                          value={formData.plan_interesado}
+                          readOnly
+                        />
+                        <DialogFooter className="mt-4">
+                          <Button type="submit" className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white">
+                            Enviar Solicitud
+                          </Button>
+                        </DialogFooter>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

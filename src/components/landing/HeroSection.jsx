@@ -119,7 +119,6 @@ const HeroSection = () => {
     }
   };
 
-
   // MODIFICADO: Esta función ahora redirige a Calendly en una nueva pestaña
   const handleScheduleMeeting = () => {
     const calendlyUrl = 'https://calendly.com/albertam2886/new-meeting'; // <-- TU URL ESPECÍFICA DE CALENDLY AQUÍ!
@@ -137,10 +136,10 @@ const HeroSection = () => {
         className="absolute inset-0 opacity-30"
         style={{ y: y1 }}
       >
-        {/* Orbes de fondo con efecto de desenfoque, con la paleta original */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
+        {/* Orbes de fondo con efecto de desenfoque - SOLO CAMBIO DE COLORES */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
       </motion.div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -170,16 +169,16 @@ const HeroSection = () => {
 
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
               Creamos asistentes personalizados con IA que entienden tu negocio,
-              responden dudas y automatizan tareas, <span className="text-purple-400 font-semibold">sin alucinar</span>.
+              responden dudas y automatizan tareas, <span className="text-accent-400 font-semibold">sin alucinar</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              {/* BOTÓN "SOLICITA UNA DEMO PERSONALIZADA" - ORIGINAL */}
+              {/* BOTÓN "SOLICITA UNA DEMO PERSONALIZADA" - SOLO CAMBIO DE COLORES */}
               <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
                 <DialogTrigger asChild>
                   <Button
                     size="xl"
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 pulse-glow group"
+                    className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 pulse-glow group"
                   >
                     <Zap className="w-5 h-5 mr-2.5 transition-transform duration-300 group-hover:scale-110" />
                     Solicita una demo personalizada
@@ -298,7 +297,7 @@ const HeroSection = () => {
                       </Select>
                     </div>
                     <DialogFooter className="mt-4">
-                      <Button type="submit" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
+                      <Button type="submit" className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white">
                         Enviar Solicitud
                       </Button>
                     </DialogFooter>
@@ -306,12 +305,11 @@ const HeroSection = () => {
                 </DialogContent>
               </Dialog>
 
-              {/* BOTÓN "AGENDA UNA REUNIÓN" - MODIFICADO */}
+              {/* BOTÓN "AGENDA UNA REUNIÓN" - SOLO CAMBIO DE COLORES */}
               <Button
                 onClick={handleScheduleMeeting}
                 size="xl"
-                // Aquí se aplican las mismas clases que el botón de demo
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 pulse-glow group"
+                className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 pulse-glow group"
               >
                 <Calendar className="w-5 h-5 mr-2.5 transition-transform duration-300 group-hover:rotate-6" />
                 Agenda una reunión
@@ -319,7 +317,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* COLUMNA DERECHA: DEMO DEL CHAT - ORIGINAL */}
+          {/* COLUMNA DERECHA: DEMO DEL CHAT - MANTENIENDO TODOS LOS EFECTOS ORIGINALES */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
@@ -328,28 +326,28 @@ const HeroSection = () => {
             style={{ y: y2 }}
           >
             <div className="relative max-w-md mx-auto">
-              {/* Fondo oscuro y borde del chat para un mejor contraste */}
+              {/* Fondo oscuro y borde del chat para un mejor contraste - MANTENIENDO glass-effect y floating-animation */}
               <div className="glass-effect rounded-2xl p-6 floating-animation bg-gray-900 border border-gray-700 shadow-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                   <span className="text-white font-medium">Asistente IA</span>
-                  <div className="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="ml-auto w-2 h-2 bg-accent-400 rounded-full animate-pulse"></div>
                 </div>
 
                 <div className="space-y-4">
-                  {/* Mensaje del usuario */}
-                  <div className="chat-bubble user-message bg-green-600 text-white p-3 rounded-lg ml-auto">
+                  {/* Mensaje del usuario - MANTENIENDO chat-bubble y user-message */}
+                  <div className="chat-bubble user-message bg-accent-600 text-white p-3 rounded-lg ml-auto">
                     <p className="text-sm text-left">¿Cuál es nuestra política de devoluciones?</p>
                   </div>
 
-                  {/* Mensaje del asistente */}
-                  <div className="chat-bubble assistant-message bg-blue-600 text-white p-3 rounded-lg mr-auto">
+                  {/* Mensaje del asistente - MANTENIENDO chat-bubble y assistant-message */}
+                  <div className="chat-bubble assistant-message bg-primary-600 text-white p-3 rounded-lg mr-auto">
                     <p className="text-sm text-left">Según nuestras políticas, tienes 30 días para solicitar una devolución. Te ayudo con el proceso...</p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-purple-400">
+                  <div className="flex items-center gap-2 text-accent-400">
                     <div className="typing-dots">
                       <span></span>
                       <span></span>
@@ -359,8 +357,8 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Icono Brain flotante: Gradiente original */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+              {/* Icono Brain flotante - SOLO CAMBIO DE COLORES */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center shadow-lg">
                 <Brain className="w-8 h-8 text-white" />
               </div>
             </div>
@@ -374,7 +372,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <ChevronDown className="w-6 h-6 text-purple-400" />
+        <ChevronDown className="w-6 h-6 text-accent-400" />
       </motion.div>
     </section>
   );
