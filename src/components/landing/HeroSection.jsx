@@ -642,19 +642,13 @@ const HeroSection = () => {
                       />
                       
                       <span className="relative z-10 flex items-center">
-                        <motion.div
-                          animate={{ rotate: [0, 360] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                        >
+                        <span>
                           <Zap className="w-6 h-6 mr-4" />
-                        </motion.div>
+                        </span>
                         Solicita una demo personalizada
-                        <motion.div
-                          animate={{ x: [0, 10, 0] }}
-                          transition={{ duration: 2.5, repeat: Infinity }}
-                        >
+                        <span>
                           <ArrowRight className="w-6 h-6 ml-4" />
-                        </motion.div>
+                        </span>
                       </span>
                     </Button>
                   </motion.div>
@@ -827,12 +821,9 @@ const HeroSection = () => {
                     transition={{ duration: 1.2 }}
                   />
                   <span className="relative z-10 flex items-center">
-                    <motion.div
-                      animate={{ rotate: [0, 20, -20, 0] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                    >
+                    <span>
                       <Calendar className="w-6 h-6 mr-4" />
-                    </motion.div>
+                    </span>
                     Agenda una reunión
                     <Play className="w-5 h-5 ml-4" />
                   </span>
@@ -875,12 +866,9 @@ const HeroSection = () => {
                     boxShadow: `0 10px 30px ${item.color.replace('text-', 'rgba(')}`,
                   }}
                 >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 6, repeat: Infinity, delay: index * 1.2 }}
-                  >
+                  <span>
                     <item.icon className={`w-5 h-5 ${item.color}`} />
-                  </motion.div>
+                  </span>
                   <span className="font-medium">{item.text}</span>
                 </motion.div>
               ))}
