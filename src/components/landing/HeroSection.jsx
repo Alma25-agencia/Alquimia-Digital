@@ -499,7 +499,7 @@ const HeroSection = () => {
           >
             {/* Logo with premium entrance */}
             <motion.div
-              className="relative mb-8 transform-gpu flex justify-center lg:justify-start w-full"
+              className="relative mb-8 transform-gpu flex justify-center lg:justify-start w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               variants={logoVariants}
               initial="hidden"
               animate={animationStage >= 2 ? "visible" : "hidden"}
@@ -539,7 +539,7 @@ const HeroSection = () => {
 
             {/* Title with orchestrated stagger */}
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-center lg:text-left w-full"
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-center lg:text-left w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -582,15 +582,7 @@ const HeroSection = () => {
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
             >
-              <motion.div 
-                className="absolute -inset-6 bg-gradient-to-r from-blue-600/30 to-emerald-600/30 rounded-xl blur-2xl"
-                animate={{
-                  opacity: [0.4, 0.7, 0.4],
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
-              />
-              <p className="relative text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed p-4 md:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-[90%] md:max-w-none mx-auto">
+              <p className="relative text-base xs:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                 Creamos asistentes personalizados con IA que entienden tu negocio,
                 responden dudas y automatizan tareas,{' '}
                 <motion.span 
@@ -612,7 +604,7 @@ const HeroSection = () => {
 
             {/* Buttons with premium entrance */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full px-4 sm:px-0"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full px-2 sm:px-0 max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               variants={buttonVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
@@ -850,7 +842,7 @@ const HeroSection = () => {
 
             {/* Trust indicators */}
             <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-8 mt-10 w-full"
+              className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               initial={{ opacity: 0, y: 40 }}
               animate={{ 
                 opacity: animationStage >= 6 ? 1 : 0, 
