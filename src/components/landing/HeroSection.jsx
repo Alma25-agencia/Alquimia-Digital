@@ -499,7 +499,7 @@ const HeroSection = () => {
           >
             {/* Logo with premium entrance */}
             <motion.div
-              className="relative mb-8 transform-gpu"
+              className="relative mb-8 transform-gpu flex justify-center lg:justify-start"
               variants={logoVariants}
               initial="hidden"
               animate={animationStage >= 2 ? "visible" : "hidden"}
@@ -590,7 +590,7 @@ const HeroSection = () => {
                 }}
                 transition={{ duration: 5, repeat: Infinity }}
               />
-              <p className="relative text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20">
+              <p className="relative text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed p-4 md:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-[90%] md:max-w-none mx-auto">
                 Creamos asistentes personalizados con IA que entienden tu negocio,
                 responden dudas y automatizan tareas,{' '}
                 <motion.span 
@@ -612,7 +612,7 @@ const HeroSection = () => {
 
             {/* Buttons with premium entrance */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full"
               variants={buttonVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
