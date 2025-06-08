@@ -488,18 +488,18 @@ const HeroSection = () => {
         />
       </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
           {/* Left column - Premium orchestrated entrance */}
           <motion.div
-            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start"
+            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start w-full"
             style={{
               transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)`
             }}
           >
             {/* Logo with premium entrance */}
             <motion.div
-              className="relative mb-8 transform-gpu flex justify-center lg:justify-start"
+              className="relative mb-8 transform-gpu flex justify-center lg:justify-start w-full"
               variants={logoVariants}
               initial="hidden"
               animate={animationStage >= 2 ? "visible" : "hidden"}
@@ -539,7 +539,7 @@ const HeroSection = () => {
 
             {/* Title with orchestrated stagger */}
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-center lg:text-left"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-center lg:text-left w-full"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -577,7 +577,7 @@ const HeroSection = () => {
 
             {/* Description with premium entrance */}
             <motion.div
-              className="relative"
+              className="relative w-full flex justify-center lg:justify-start"
               variants={descriptionVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
@@ -612,7 +612,7 @@ const HeroSection = () => {
 
             {/* Buttons with premium entrance */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full"
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full px-4 sm:px-0"
               variants={buttonVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
