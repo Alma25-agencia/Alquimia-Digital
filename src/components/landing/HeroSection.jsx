@@ -537,9 +537,9 @@ const HeroSection = () => {
               />
             </motion.div>
 
-            {/* Title with orchestrated stagger */}
+            {/* Title with orchestrated stagger - BIGGER ON MOBILE */}
             <motion.h1 
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold mb-6 leading-tight text-center lg:text-left max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0"
+              className="text-5xl xs:text-6xl sm:text-6xl md:text-5xl xl:text-7xl font-bold mb-6 leading-tight text-center lg:text-left max-w-sm sm:max-w-md md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -575,14 +575,14 @@ const HeroSection = () => {
               </motion.span>
             </motion.h1>
 
-            {/* Description with premium entrance */}
+            {/* Description with premium entrance - SMALLER COMPACT CARD */}
             <motion.div
               className="relative flex justify-center lg:justify-start w-auto lg:w-full"
               variants={descriptionVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
             >
-              <p className="relative text-base xs:text-lg md:text-xl xl:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-6 xl:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-2xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0">
+              <p className="relative text-sm xs:text-base md:text-xl xl:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-6 xl:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0">
                 Creamos asistentes personalizados con IA que entienden tu negocio,
                 responden dudas y automatizan tareas,{' '}
                 <motion.span 
@@ -602,14 +602,14 @@ const HeroSection = () => {
               </p>
             </motion.div>
 
-            {/* Buttons with premium entrance */}
+            {/* Buttons with premium entrance - SAME SIZE BUTTONS */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start px-2 sm:px-0 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
               variants={buttonVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
             >
-              {/* Demo button */}
+              {/* Demo button - SAME SIZE AS SCHEDULE BUTTON */}
               <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
                 <DialogTrigger asChild>
                   <motion.div
@@ -623,8 +623,8 @@ const HeroSection = () => {
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   >
                     <Button
-                      size="xl"
-                      className="relative bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-10 py-5 text-lg transform-gpu"
+                      size="lg"
+                      className="relative bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
@@ -642,13 +642,9 @@ const HeroSection = () => {
                       />
                       
                       <span className="relative z-10 flex items-center">
-                        <span>
-                          <Zap className="w-6 h-6 mr-4" />
-                        </span>
-                        Solicita una demo personalizada
-                        <span>
-                          <ArrowRight className="w-6 h-6 ml-4" />
-                        </span>
+                        <Zap className="w-5 h-5 mr-2" />
+                        Solicitar Demo
+                        <ArrowRight className="w-5 h-5 ml-2" />
                       </span>
                     </Button>
                   </motion.div>
@@ -798,7 +794,7 @@ const HeroSection = () => {
                 </DialogContent>
               </Dialog>
 
-              {/* Schedule button */}
+              {/* Schedule button - SAME SIZE */}
               <motion.div
                 whileHover={{ 
                   scale: 1.08, 
@@ -811,8 +807,8 @@ const HeroSection = () => {
               >
                 <Button
                   onClick={handleScheduleMeeting}
-                  size="xl"
-                  className="relative bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-10 py-5 text-lg transform-gpu"
+                  size="lg"
+                  className="relative bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
@@ -821,11 +817,9 @@ const HeroSection = () => {
                     transition={{ duration: 1.2 }}
                   />
                   <span className="relative z-10 flex items-center">
-                    <span>
-                      <Calendar className="w-6 h-6 mr-4" />
-                    </span>
-                    Agenda una reunión
-                    <Play className="w-5 h-5 ml-4" />
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Agenda Reunión
+                    <Play className="w-5 h-5 ml-2" />
                   </span>
                 </Button>
               </motion.div>
