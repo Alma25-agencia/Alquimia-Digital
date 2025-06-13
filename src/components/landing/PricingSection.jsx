@@ -36,7 +36,6 @@ const pricingPlansData = [
       "Herramientas clave: Make, n8n"
     ],
     maintenanceNote: "Los costes de mantenimiento se adaptarán a la complejidad y alcance de la solución implementada. Incluye soporte técnico y posibles mejoras.",
-    popular: false,
     planIdentifier: "AUTOMATIZACION_PROCESOS",
     hasCustomBudgetOptions: true,
     icon: TrendingUp,
@@ -52,7 +51,6 @@ const pricingPlansData = [
       "Integración con tu canal de consulta (Telegram, web, etc.)",
     ],
     maintenanceNote: "Mantenimiento necesario (gestión de tokens, actualizaciones, soporte técnico, etc.) no incluido. Se determinará según las necesidades de cada proyecto.",
-    popular: true,
     planIdentifier: "RAG_INICIAL",
     icon: Zap,
     gradient: "from-blue-400 to-blue-600",
@@ -67,7 +65,6 @@ const pricingPlansData = [
       "Flujo RAG especializado con capacidad de tutoría interactiva",
     ],
     maintenanceNote: "Mantenimiento necesario (gestión de tokens, actualizaciones, soporte técnico profesional, etc.) no incluido. Se determinará según las necesidades de cada proyecto.",
-    popular: false,
     planIdentifier: "RAG_EDUCATIVO",
     icon: Shield,
     gradient: "from-emerald-400 to-emerald-600",
@@ -284,8 +281,8 @@ const PricingSection = () => {
           {pricingPlansData.map((plan, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 100, rotateX: 45 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
                 type: "spring", 
                 stiffness: 100, 
@@ -317,42 +314,18 @@ const PricingSection = () => {
                   relative bg-slate-800/30 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 
                   h-full flex flex-col transition-all duration-500 ease-out
                   shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.3)]
-                  ${plan.popular ? 'ring-2 ring-blue-400/50 scale-105' : ''}
                 `}
                 whileHover={{
                   y: -20,
-                  rotateY: 5,
-                  scale: plan.popular ? 1.08 : 1.05,
+                  scale: 1.05,
                   transition: { type: "spring", stiffness: 400, damping: 25 }
                 }}
               >
-                {/* Badge popular mejorado - CORREGIDO */}
-                {plan.popular && (
-                  <motion.div 
-                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", stiffness: 300, delay: 0.8 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="bg-gradient-to-r from-blue-400 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg">
-                      <motion.div
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      >
-                        <Star className="w-4 h-4" />
-                      </motion.div>
-                      Más Popular
-                    </div>
-                  </motion.div>
-                )}
-
                 {/* Icono animado - CORREGIDO */}
                 <motion.div 
                   className="flex justify-center mb-6"
                   whileHover={{ 
-                    scale: 1.2, 
-                    rotate: 360,
+                    scale: 1.2,
                     transition: { duration: 0.8, ease: "easeInOut" }
                   }}
                 >
@@ -412,8 +385,7 @@ const PricingSection = () => {
                       >
                         <motion.div
                           animate={{ 
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 360, 0]
+                            scale: [1, 1.2, 1]
                           }}
                           transition={{ 
                             duration: 2, 
@@ -464,7 +436,7 @@ const PricingSection = () => {
                         />
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           <motion.div
-                            animate={{ rotate: [0, 360] }}
+                            animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                           >
                             <Zap className="w-5 h-5" />

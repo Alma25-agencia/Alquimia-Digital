@@ -218,14 +218,12 @@ const HeroSection = () => {
       opacity: 0, 
       scale: 0.3, 
       y: 100,
-      rotateY: -90,
       filter: "blur(20px)"
     },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      rotateY: 0,
       filter: "blur(0px)",
       transition: {
         duration: 1.2,
@@ -250,13 +248,11 @@ const HeroSection = () => {
     hidden: { 
       opacity: 0, 
       y: 80, 
-      rotateX: -90,
       filter: "blur(10px)"
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       filter: "blur(0px)",
       transition: {
         duration: 0.8,
@@ -308,13 +304,11 @@ const HeroSection = () => {
       opacity: 0, 
       x: 200, 
       scale: 0.8,
-      rotateY: 45
     },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
-      rotateY: 0,
       transition: {
         duration: 1,
         ease: [0.25, 0.46, 0.45, 0.94],
@@ -422,7 +416,6 @@ const HeroSection = () => {
             scale: [1, 1.4, 0.9, 1],
             x: [0, 50, -30, 0],
             y: [0, -30, 20, 0],
-            rotate: [0, 180, 360],
           }}
           transition={{
             duration: 25,
@@ -441,7 +434,6 @@ const HeroSection = () => {
             scale: [1.3, 1, 1.5, 1.3],
             x: [-20, 40, -50, -20],
             y: [0, 40, -25, 0],
-            rotate: [360, 180, 0],
           }}
           transition={{
             duration: 30,
@@ -450,7 +442,6 @@ const HeroSection = () => {
           }}
           style={{
             transform: `translate(${smoothMouseX * -0.15}px, ${smoothMouseY * -0.15}px)`,
-            rotate: rotate2
           }}
         />
         
@@ -469,7 +460,6 @@ const HeroSection = () => {
           }}
           style={{
             transform: `translate(${smoothMouseX * 0.2}px, ${smoothMouseY * 0.2}px)`,
-            rotate: rotate3
           }}
         />
         
@@ -488,18 +478,18 @@ const HeroSection = () => {
         />
       </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+      <div className="w-full h-screen relative z-10 flex items-stretch justify-start"
+        style={{ marginTop: '-2rem' }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch w-full h-full">
           {/* Left column - Premium orchestrated entrance */}
           <motion.div
-            className="text-center lg:text-left perspective-1000 flex flex-col items-center lg:items-start mx-auto lg:mx-0"
-            style={{
-              transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)`
-            }}
+            className="text-left perspective-1000 flex flex-col items-start justify-start w-full h-full"
+            style={{ marginLeft: '2cm', transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)` }}
           >
             {/* Logo with premium entrance */}
             <motion.div
-              className="relative mb-8 transform-gpu flex justify-center lg:justify-start max-w-xs sm:max-w-sm md:max-w-md md:mx-auto lg:max-w-none lg:mx-0"
+              className="relative mb-8 mt-0 transform-gpu flex justify-start w-full"
               variants={logoVariants}
               initial="hidden"
               animate={animationStage >= 2 ? "visible" : "hidden"}
@@ -511,12 +501,10 @@ const HeroSection = () => {
                 animate={{
                   scale: isHovering ? 1.4 : 1,
                   opacity: isHovering ? 0.9 : 0.6,
-                  rotate: [0, 360],
                 }}
                 transition={{ 
                   scale: { duration: 0.5, ease: "easeOut" },
                   opacity: { duration: 0.5 },
-                  rotate: { duration: 25, repeat: Infinity, ease: "linear" }
                 }}
               />
               <motion.img
@@ -525,8 +513,6 @@ const HeroSection = () => {
                 className="relative mx-auto lg:mx-0 h-48 md:h-64 lg:h-80 w-auto transform-gpu"
                 whileHover={{ 
                   scale: 1.1,
-                  rotateY: 10,
-                  rotateX: 5,
                   z: 50,
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -539,7 +525,7 @@ const HeroSection = () => {
 
             {/* Title with orchestrated stagger - BIGGER ON MOBILE */}
             <motion.h1 
-              className="text-5xl xs:text-6xl sm:text-6xl md:text-5xl xl:text-7xl font-bold mb-6 leading-tight text-center lg:text-left max-w-sm sm:max-w-md md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0"
+              className="text-6xl xs:text-7xl sm:text-7xl md:text-6xl xl:text-8xl font-bold mb-6 leading-tight text-left w-full"
               variants={titleVariants}
               initial="hidden"
               animate={animationStage >= 3 ? "visible" : "hidden"}
@@ -577,12 +563,12 @@ const HeroSection = () => {
 
             {/* Description with premium entrance - SMALLER COMPACT CARD */}
             <motion.div
-              className="relative flex justify-center lg:justify-start w-auto lg:w-full"
+              className="relative flex justify-start w-full"
               variants={descriptionVariants}
               initial="hidden"
               animate={animationStage >= 4 ? "visible" : "hidden"}
             >
-              <p className="relative text-sm xs:text-base md:text-xl xl:text-2xl text-gray-300 mb-6 leading-relaxed p-3 sm:p-4 md:p-6 xl:p-8 bg-slate-900/50 backdrop-blur-2xl rounded-xl border border-white/20 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none lg:mx-0">
+              <p className="relative text-sm xs:text-base md:text-lg xl:text-xl text-gray-300 mb-4 leading-relaxed p-2 sm:p-3 md:p-4 xl:p-5 bg-slate-900/50 backdrop-blur-2xl rounded-xl border border-white/20 w-full">
                 Creamos asistentes personalizados con IA que entienden tu negocio,
                 responden dudas y automatizan tareas,{' '}
                 <motion.span 
@@ -615,9 +601,7 @@ const HeroSection = () => {
                   <motion.div
                     whileHover={{ 
                       scale: 1.08, 
-                      y: -6, 
-                      rotateX: 8,
-                      z: 30 
+                      y: -6
                     }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -798,9 +782,7 @@ const HeroSection = () => {
               <motion.div
                 whileHover={{ 
                   scale: 1.08, 
-                  y: -6, 
-                  rotateX: 8,
-                  z: 30 
+                  y: -6
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -871,7 +853,7 @@ const HeroSection = () => {
 
           {/* Right column - Premium chat interface */}
           <motion.div
-            className="relative hidden lg:flex justify-center items-center perspective-1000"
+            className="relative hidden lg:flex justify-center items-center perspective-1000 h-full w-full"
             style={{ y: y2 }}
             variants={chatVariants}
             initial="hidden"
@@ -882,9 +864,7 @@ const HeroSection = () => {
               <motion.div 
                 className="relative rounded-3xl p-6 bg-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-3xl overflow-hidden"
                 whileHover={{ 
-                  scale: 1.02,
-                  rotateY: 5,
-                  z: 30
+                  scale: 1.02
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 style={{
@@ -1008,7 +988,6 @@ const HeroSection = () => {
                 className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-3 border-white/20"
                 animate={{
                   y: [0, -12, 0],
-                  rotate: [0, 8, -8, 0],
                   boxShadow: [
                     "0 15px 30px rgba(37,99,235,0.4)",
                     "0 25px 50px rgba(16,185,129,0.6)",
@@ -1022,8 +1001,6 @@ const HeroSection = () => {
                 }}
                 whileHover={{ 
                   scale: 1.1,
-                  rotate: 180,
-                  transition: { duration: 0.6 }
                 }}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ 
@@ -1050,7 +1027,6 @@ const HeroSection = () => {
         animate={{ 
           scale: [1, 1.8, 1],
           opacity: [0.4, 1, 0.4],
-          rotate: [0, 180, 360]
         }}
         transition={{ duration: 4, repeat: Infinity }}
         initial={{ opacity: 0 }}
