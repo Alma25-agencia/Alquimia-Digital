@@ -863,10 +863,10 @@ const HeroSection = ({ children }) => {
               initial="hidden"
               animate={animationStage >= 5 ? "visible" : "hidden"}
             >
-              <div className="relative max-w-md mx-auto">
-                {/* Enhanced glass effect chat container */}
+              <div className="relative max-w-lg mx-auto">
+                {/* Enhanced glass effect chat container - MÁS GRANDE */}
                 <motion.div 
-                  className="relative rounded-3xl p-6 bg-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-3xl overflow-hidden"
+                  className="relative rounded-3xl p-8 bg-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-3xl overflow-hidden"
                   whileHover={{ 
                     scale: 1.02
                   }}
@@ -897,15 +897,15 @@ const HeroSection = ({ children }) => {
                     transition={{ duration: 8, repeat: Infinity }}
                   />
 
-                  {/* Chat header */}
+                  {/* Chat header - MÁS GRANDE */}
                   <motion.div 
-                    className="relative flex items-center gap-3 mb-5 pb-3 border-b border-slate-600/40"
+                    className="relative flex items-center gap-4 mb-6 pb-4 border-b border-slate-600/40"
                     initial={{ opacity: 0, y: -15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
                     <motion.div 
-                      className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center relative"
+                      className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center relative"
                       animate={{
                         boxShadow: [
                           "0 0 15px rgba(37,99,235,0.5)",
@@ -915,7 +915,7 @@ const HeroSection = ({ children }) => {
                       }}
                       transition={{ duration: 4, repeat: Infinity }}
                     >
-                      <Bot className="w-4 h-4 text-white" />
+                      <Bot className="w-5 h-5 text-white" />
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-full"
                         animate={{ rotate: [0, 360] }}
@@ -923,44 +923,44 @@ const HeroSection = ({ children }) => {
                       />
                     </motion.div>
                     <div>
-                      <span className="text-white font-medium text-sm">Asistente IA</span>
-                      <div className="flex items-center gap-1 mt-0.5">
+                      <span className="text-white font-medium text-base">Asistente IA</span>
+                      <div className="flex items-center gap-1 mt-1">
                         <motion.div 
-                          className="w-1.5 h-1.5 bg-emerald-400 rounded-full"
+                          className="w-2 h-2 bg-emerald-400 rounded-full"
                           animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                           transition={{ duration: 2, repeat: Infinity }}
                         />
-                        <span className="text-emerald-400 text-xs">En línea</span>
+                        <span className="text-emerald-400 text-sm">En línea</span>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Chat messages */}
-                  <div className="space-y-4 relative">
+                  {/* Chat messages - MÁS GRANDES */}
+                  <div className="space-y-5 relative">
                     <motion.div 
-                      className="chat-bubble user-message bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3 rounded-xl ml-auto max-w-[85%] shadow-md"
+                      className="chat-bubble user-message bg-gradient-to-r from-blue-600 to-blue-500 text-white p-4 rounded-xl ml-auto max-w-[85%] shadow-md"
                       initial={{ opacity: 0, x: 30, scale: 0.9 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}
                       transition={{ delay: 0.8, type: "spring", stiffness: 400 }}
                     >
-                      <p className="text-xs font-medium">¿Cuál es nuestra política de devoluciones?</p>
+                      <p className="text-sm font-medium">¿Cuál es nuestra política de devoluciones?</p>
                     </motion.div>
 
                     <motion.div 
-                      className="chat-bubble assistant-message bg-gradient-to-r from-blue-700 to-blue-600 text-white p-3 rounded-xl mr-auto max-w-[90%] shadow-md"
+                      className="chat-bubble assistant-message bg-gradient-to-r from-blue-700 to-blue-600 text-white p-4 rounded-xl mr-auto max-w-[90%] shadow-md"
                       initial={{ opacity: 0, x: -30, scale: 0.9 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}
                       transition={{ delay: 1.4, type: "spring", stiffness: 400 }}
                     >
-                      <p className="text-xs font-medium leading-relaxed">
+                      <p className="text-sm font-medium leading-relaxed">
                         Según nuestras políticas, tienes 30 días para solicitar una devolución. 
                         Te ayudo con el proceso...
                       </p>
                     </motion.div>
 
-                    {/* Typing dots */}
+                    {/* Typing dots - MÁS GRANDES */}
                     <motion.div 
-                      className="flex items-center gap-1 pl-3"
+                      className="flex items-center gap-1 pl-4"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 2 }}
@@ -969,7 +969,7 @@ const HeroSection = ({ children }) => {
                         {[0, 1, 2].map((i) => (
                           <motion.span
                             key={i}
-                            className="w-2 h-2 bg-blue-400 rounded-full"
+                            className="w-2.5 h-2.5 bg-blue-400 rounded-full"
                             animate={{
                               y: [0, -8, 0],
                               opacity: [0.5, 1, 0.5],
@@ -987,9 +987,9 @@ const HeroSection = ({ children }) => {
                   </div>
                 </motion.div>
 
-                {/* Enhanced floating brain icon */}
+                {/* Enhanced floating brain icon - MÁS GRANDE */}
                 <motion.div 
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-3 border-white/20"
+                  className="absolute -top-5 -right-5 w-20 h-20 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-3 border-white/20"
                   animate={{
                     y: [0, -12, 0],
                     boxShadow: [
@@ -1013,7 +1013,7 @@ const HeroSection = ({ children }) => {
                   }}
                   transition={{ delay: 1 }}
                 >
-                  <Brain className="w-8 h-8 text-white" />
+                  <Brain className="w-10 h-10 text-white" />
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-full"
                     animate={{ rotate: [0, 360] }}
