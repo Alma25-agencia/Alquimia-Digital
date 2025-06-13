@@ -7,8 +7,7 @@ import PricingSection from '@/components/landing/PricingSection';
 import CtaSection from '@/components/landing/CtaSection';
 import FaqSection from '@/components/landing/FaqSection';
 import Footer from '@/components/landing/Footer';
-import { supabase } from '@/lib/supabaseClient'; // Asegúrate que esta importación esté descomentada
-import Navbar from "./components/Navbar";
+import { supabase } from '@/lib/supabaseClient';
 
 function App() {
   // Ejemplo de cómo usar Supabase client (puedes eliminarlo si no lo usas aquí directamente)

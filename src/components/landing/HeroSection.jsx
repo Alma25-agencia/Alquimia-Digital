@@ -324,7 +324,7 @@ const HeroSection = ({ children }) => {
       <motion.section 
         id="inicio"
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-0"
         style={{ 
           opacity, 
           scale,
@@ -334,13 +334,6 @@ const HeroSection = ({ children }) => {
         initial="hidden"
         animate={animationStage >= 1 ? "visible" : "hidden"}
       >
-        {/* Navbar fijo/transparente arriba del HeroSection */}
-        {children && (
-          <div className="sticky top-0 left-0 right-0 z-50">
-            {children}
-          </div>
-        )}
-
         {/* Premium multi-layer background */}
         <motion.div 
           className="absolute inset-0"
@@ -490,7 +483,7 @@ const HeroSection = ({ children }) => {
         </motion.div>
 
         <div className="w-full h-screen relative z-10 flex items-stretch justify-start"
-          style={{ marginTop: '-2rem' }}
+          style={{ marginTop: '-6rem' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch w-full h-full">
             {/* Left column - Premium orchestrated entrance */}

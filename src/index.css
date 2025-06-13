@@ -41,6 +41,36 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 
+  ---
+  NAVBAR FORZADO A SER TRANSPARENTE - SOBRESCRIBE TODO
+  ---
+*/
+nav,
+nav.bg-slate-900,
+nav[style],
+header nav,
+.navbar,
+[class*="nav"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Regla nuclear para cualquier elemento nav con cualquier clase o estilo */
+nav * {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Si hay transiciones, las eliminamos */
+nav {
+  transition: none !important;
+}
+
 /*
   ---
   ESTILOS PRINCIPALES PARA TARJETAS DE PRECIO: GLASS EFFECT Y BORDE LUMINOSO SUTIL

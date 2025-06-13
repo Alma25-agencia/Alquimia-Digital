@@ -5,7 +5,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className="sticky top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-md py-4 px-4 sm:px-8 transition-all duration-300"
+      className="sticky top-0 left-0 right-0 z-50 bg-transparent py-4 px-4 sm:px-8"
+      style={{ backgroundColor: 'transparent !important' }}
     >
       <div className="flex justify-end items-center max-w-7xl mx-auto">
         {/* Menú hamburguesa */}
@@ -32,4 +33,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
