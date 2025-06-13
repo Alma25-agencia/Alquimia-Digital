@@ -57,7 +57,7 @@ const FeaturesSection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="soluciones" className="relative pt-16 pb-16 overflow-hidden">
       {/* Fondo con gradiente y elementos decorativos */}
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900"></div>
       

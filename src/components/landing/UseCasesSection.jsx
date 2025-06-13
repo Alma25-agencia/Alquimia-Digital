@@ -26,7 +26,7 @@ const useCasesData = [
 
 const UseCasesSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-blue-900/20 to-blue-800/20 relative overflow-hidden">
+    <section id="casos" className="py-20 bg-gradient-to-r from-blue-900/20 to-blue-800/20 relative overflow-hidden">
       {/* Elementos de fondo sutiles */}
       <div className="absolute inset-0">
         <motion.div

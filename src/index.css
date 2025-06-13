@@ -37,6 +37,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*
   ---
   ESTILOS PRINCIPALES PARA TARJETAS DE PRECIO: GLASS EFFECT Y BORDE LUMINOSO SUTIL

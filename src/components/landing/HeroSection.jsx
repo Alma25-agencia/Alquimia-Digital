@@ -35,8 +35,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import logoAlquimiaDigital from '../../assets/images/Untitled.png';
+import Navbar from '../Navbar';
 
-const HeroSection = () => {
+const HeroSection = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -318,767 +319,758 @@ const HeroSection = () => {
   };
 
   return (
-    <motion.section 
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ 
-        opacity, 
-        scale,
-        filter: `blur(${blur}px)`
-      }}
-      variants={containerVariants}
-      initial="hidden"
-      animate={animationStage >= 1 ? "visible" : "hidden"}
-    >
-      {/* Premium multi-layer background */}
-      <motion.div 
-        className="absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Base layer with enhanced gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/80 to-slate-950" />
-        
-        {/* Atmospheric layers */}
-        <motion.div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(37,99,235,0.4),rgba(15,23,42,0.9))]"
-          style={{ y: y5, rotate: rotate1 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-        />
-        
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-blue-950/50"
-          style={{ y: y4 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
-          transition={{ duration: 2, delay: 0.6 }}
-        />
-      </motion.div>
-
-      {/* Clean Premium Background - NO PARTICLES */}
-      <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
-        transition={{ duration: 2 }}
-      >
-        {/* Subtle animated gradients only */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/60 to-slate-950"
-          animate={{
-            background: [
-              "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(30, 58, 138) 50%, rgb(2, 6, 23) 100%)",
-              "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(37, 99, 235) 50%, rgb(2, 6, 23) 100%)",
-              "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(30, 58, 138) 50%, rgb(2, 6, 23) 100%)"
-            ]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        {/* Ambient light effects */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full filter blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
-        />
-      </motion.div>
-
-      {/* Premium animated orbs */}
-      <motion.div 
-        className="absolute inset-0 opacity-60" 
-        style={{ y: y1, rotate: rotate1 }}
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ 
-          opacity: animationStage >= 1 ? 0.6 : 0,
-          scale: animationStage >= 1 ? 1 : 0.5
+    <>
+      <Navbar />
+      <motion.section 
+        id="inicio"
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{ 
+          opacity, 
+          scale,
+          filter: `blur(${blur}px)`
         }}
-        transition={{ duration: 2, delay: 0.5 }}
+        variants={containerVariants}
+        initial="hidden"
+        animate={animationStage >= 1 ? "visible" : "hidden"}
       >
-        {/* Hero orb - primary blue */}
-        <motion.div 
-          className="absolute top-20 left-10 w-[500px] h-[500px] bg-gradient-to-r from-blue-600/50 to-blue-500/50 rounded-full filter blur-3xl"
-          animate={{
-            scale: [1, 1.4, 0.9, 1],
-            x: [0, 50, -30, 0],
-            y: [0, -30, 20, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            transform: `translate(${smoothMouseX * 0.1}px, ${smoothMouseY * 0.1}px)`
-          }}
-        />
-        
-        {/* Secondary orb - blue variation */}
-        <motion.div 
-          className="absolute top-40 right-10 w-[400px] h-[400px] bg-gradient-to-r from-blue-500/50 to-blue-400/50 rounded-full filter blur-3xl"
-          animate={{
-            scale: [1.3, 1, 1.5, 1.3],
-            x: [-20, 40, -50, -20],
-            y: [0, 40, -25, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            transform: `translate(${smoothMouseX * -0.15}px, ${smoothMouseY * -0.15}px)`,
-          }}
-        />
-        
-        {/* Accent orbs - emerald (your accent color) */}
-        <motion.div 
-          className="absolute bottom-20 left-1/2 w-[350px] h-[350px] bg-gradient-to-r from-emerald-500/40 to-emerald-400/40 rounded-full filter blur-3xl"
-          animate={{
-            scale: [1, 1.6, 1],
-            x: [-80, 80, -80],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            transform: `translate(${smoothMouseX * 0.2}px, ${smoothMouseY * 0.2}px)`,
-          }}
-        />
-        
-        <motion.div 
-          className="absolute top-1/2 right-1/4 w-[250px] h-[250px] bg-gradient-to-r from-blue-500/40 to-blue-400/40 rounded-full filter blur-2xl"
-          animate={{
-            scale: [0.8, 1.3, 0.8],
-            rotate: [0, 270, 360],
-            x: [0, 60, 0],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </motion.div>
+        {/* Navbar fijo/transparente arriba del HeroSection */}
+        {children && (
+          <div className="sticky top-0 left-0 right-0 z-50">
+            {children}
+          </div>
+        )}
 
-      <div className="w-full h-screen relative z-10 flex items-stretch justify-start"
-        style={{ marginTop: '-2rem' }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch w-full h-full">
-          {/* Left column - Premium orchestrated entrance */}
+        {/* Premium multi-layer background */}
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Base layer with enhanced gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/80 to-slate-950" />
+          
+          {/* Atmospheric layers */}
+          <motion.div 
+            className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(37,99,235,0.4),rgba(15,23,42,0.9))]"
+            style={{ y: y5, rotate: rotate1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+          />
+          
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-blue-950/50"
+            style={{ y: y4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
+            transition={{ duration: 2, delay: 0.6 }}
+          />
+        </motion.div>
+
+        {/* Clean Premium Background - NO PARTICLES */}
+        <motion.div 
+          className="absolute inset-0 overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animationStage >= 1 ? 1 : 0 }}
+          transition={{ duration: 2 }}
+        >
+          {/* Subtle animated gradients only */}
           <motion.div
-            className="text-left perspective-1000 flex flex-col items-start justify-start w-full h-full"
-            style={{ marginLeft: '2cm', transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)` }}
-          >
-            {/* Logo with premium entrance */}
+            className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/60 to-slate-950"
+            animate={{
+              background: [
+                "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(30, 58, 138) 50%, rgb(2, 6, 23) 100%)",
+                "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(37, 99, 235) 50%, rgb(2, 6, 23) 100%)",
+                "linear-gradient(135deg, rgb(2, 6, 23) 0%, rgb(30, 58, 138) 50%, rgb(2, 6, 23) 100%)"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          
+          {/* Ambient light effects */}
+          <motion.div
+            className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 12, repeat: Infinity }}
+          />
+          
+          <motion.div
+            className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full filter blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 15, repeat: Infinity }}
+          />
+        </motion.div>
+
+        {/* Premium animated orbs */}
+        <motion.div 
+          className="absolute inset-0 opacity-60" 
+          style={{ y: y1, rotate: rotate1 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ 
+            opacity: animationStage >= 1 ? 0.6 : 0,
+            scale: animationStage >= 1 ? 1 : 0.5
+          }}
+          transition={{ duration: 2, delay: 0.5 }}
+        >
+          {/* Hero orb - primary blue */}
+          <motion.div 
+            className="absolute top-20 left-10 w-[500px] h-[500px] bg-gradient-to-r from-blue-600/50 to-blue-500/50 rounded-full filter blur-3xl"
+            animate={{
+              scale: [1, 1.4, 0.9, 1],
+              x: [0, 50, -30, 0],
+              y: [0, -30, 20, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              transform: `translate(${smoothMouseX * 0.1}px, ${smoothMouseY * 0.1}px)`
+            }}
+          />
+          
+          {/* Secondary orb - blue variation */}
+          <motion.div 
+            className="absolute top-40 right-10 w-[400px] h-[400px] bg-gradient-to-r from-blue-500/50 to-blue-400/50 rounded-full filter blur-3xl"
+            animate={{
+              scale: [1.3, 1, 1.5, 1.3],
+              x: [-20, 40, -50, -20],
+              y: [0, 40, -25, 0],
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              transform: `translate(${smoothMouseX * -0.15}px, ${smoothMouseY * -0.15}px)`,
+            }}
+          />
+          
+          {/* Accent orbs - emerald (your accent color) */}
+          <motion.div 
+            className="absolute bottom-20 left-1/2 w-[350px] h-[350px] bg-gradient-to-r from-emerald-500/40 to-emerald-400/40 rounded-full filter blur-3xl"
+            animate={{
+              scale: [1, 1.6, 1],
+              x: [-80, 80, -80],
+              y: [0, -50, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              transform: `translate(${smoothMouseX * 0.2}px, ${smoothMouseY * 0.2}px)`,
+            }}
+          />
+          
+          <motion.div 
+            className="absolute top-1/2 right-1/4 w-[250px] h-[250px] bg-gradient-to-r from-blue-500/40 to-blue-400/40 rounded-full filter blur-2xl"
+            animate={{
+              scale: [0.8, 1.3, 0.8],
+              rotate: [0, 270, 360],
+              x: [0, 60, 0],
+            }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </motion.div>
+
+        <div className="w-full h-screen relative z-10 flex items-stretch justify-start"
+          style={{ marginTop: '-2rem' }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch w-full h-full">
+            {/* Left column - Premium orchestrated entrance */}
             <motion.div
-              className="relative mb-8 mt-0 transform-gpu flex justify-start w-full"
-              variants={logoVariants}
-              initial="hidden"
-              animate={animationStage >= 2 ? "visible" : "hidden"}
-              onHoverStart={() => setIsHovering(true)}
-              onHoverEnd={() => setIsHovering(false)}
+              className="text-left perspective-1000 flex flex-col items-start justify-start w-full h-full"
+              style={{ marginLeft: '2cm', transform: `translate3d(${smoothMouseX * 0.02}px, ${smoothMouseY * 0.02}px, 0)` }}
             >
+              {/* Logo with premium entrance */}
               <motion.div
-                className="absolute -inset-8 bg-gradient-to-r from-blue-600/50 to-emerald-600/50 rounded-full blur-3xl"
-                animate={{
-                  scale: isHovering ? 1.4 : 1,
-                  opacity: isHovering ? 0.9 : 0.6,
-                }}
-                transition={{ 
-                  scale: { duration: 0.5, ease: "easeOut" },
-                  opacity: { duration: 0.5 },
-                }}
-              />
-              <motion.img
-                src={logoAlquimiaDigital}
-                alt="Alquimia Digital Logo"
-                className="relative mx-auto lg:mx-0 h-48 md:h-64 lg:h-80 w-auto transform-gpu"
-                whileHover={{ 
-                  scale: 1.1,
-                  z: 50,
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                style={{
-                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))',
-                  transform: `translate3d(${smoothMouseX * 0.08}px, ${smoothMouseY * 0.08}px, 0)`
-                }}
-              />
-            </motion.div>
-
-            {/* Title with orchestrated stagger - BIGGER ON MOBILE */}
-            <motion.h1 
-              className="text-6xl xs:text-7xl sm:text-7xl md:text-6xl xl:text-8xl font-bold mb-6 leading-tight text-left w-full"
-              variants={titleVariants}
-              initial="hidden"
-              animate={animationStage >= 3 ? "visible" : "hidden"}
-            >
-              <motion.span 
-                className="block bg-gradient-to-r from-blue-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent"
-                variants={titleLineVariants}
-                style={{
-                  backgroundSize: '300% 300%',
-                }}
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{ 
-                  backgroundPosition: { duration: 8, repeat: Infinity }
-                }}
+                className="relative mb-8 mt-0 transform-gpu flex justify-start w-full"
+                variants={logoVariants}
+                initial="hidden"
+                animate={animationStage >= 2 ? "visible" : "hidden"}
+                onHoverStart={() => setIsHovering(true)}
+                onHoverEnd={() => setIsHovering(false)}
               >
-                Tu conocimiento,
-              </motion.span>
-              
-              <motion.span 
-                className="block text-white"
-                variants={titleLineVariants}
-              >
-                disponible
-              </motion.span>
-              
-              <motion.span 
-                className="block bg-gradient-to-r from-emerald-400 via-blue-400 to-blue-500 bg-clip-text text-transparent"
-                variants={titleLineVariants}
-              >
-                24/7 con IA
-              </motion.span>
-            </motion.h1>
-
-            {/* Description with premium entrance - SMALLER COMPACT CARD */}
-            <motion.div
-              className="relative flex justify-start w-full"
-              variants={descriptionVariants}
-              initial="hidden"
-              animate={animationStage >= 4 ? "visible" : "hidden"}
-            >
-              <p className="relative text-sm xs:text-base md:text-lg xl:text-xl text-gray-300 mb-4 leading-relaxed p-2 sm:p-3 md:p-4 xl:p-5 bg-slate-900/50 backdrop-blur-2xl rounded-xl border border-white/20 w-full">
-                Creamos asistentes personalizados con IA que entienden tu negocio,
-                responden dudas y automatizan tareas,{' '}
-                <motion.span 
-                  className="text-emerald-400 font-semibold"
-                  animate={{
-                    textShadow: [
-                      "0 0 10px rgba(16, 185, 129, 0.6)",
-                      "0 0 30px rgba(16, 185, 129, 1)",
-                      "0 0 10px rgba(16, 185, 129, 0.6)"
-                    ]
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
-                  sin alucinar
-                </motion.span>
-                .
-              </p>
-            </motion.div>
-
-            {/* Buttons with premium entrance - SAME SIZE BUTTONS */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
-              variants={buttonVariants}
-              initial="hidden"
-              animate={animationStage >= 4 ? "visible" : "hidden"}
-            >
-              {/* Demo button - SAME SIZE AS SCHEDULE BUTTON */}
-              <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
-                <DialogTrigger asChild>
-                  <motion.div
-                    whileHover={{ 
-                      scale: 1.08, 
-                      y: -6
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  >
-                    <Button
-                      size="lg"
-                      className="relative bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
-                        initial={{ x: "-300%" }}
-                        whileHover={{ x: "300%" }}
-                        transition={{ duration: 1.2 }}
-                      />
-                      
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-blue-500/70"
-                        animate={{
-                          opacity: [0.7, 1, 0.7]
-                        }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                      />
-                      
-                      <span className="relative z-10 flex items-center">
-                        <Zap className="w-5 h-5 mr-2" />
-                        Solicitar Demo
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </span>
-                    </Button>
-                  </motion.div>
-                </DialogTrigger>
-
-                {/* Modal with correct styling */}
-                <DialogContent className="sm:max-w-[450px] max-h-[90vh] overflow-y-auto bg-slate-900/95 backdrop-blur-xl text-white border border-slate-600/50 rounded-2xl shadow-2xl">
-                  <DialogHeader className="pb-4 border-b border-slate-600/50">
-                    <DialogTitle className="text-xl font-bold text-white">
-                      Solicita tu Demo Personalizada
-                    </DialogTitle>
-                    <DialogDescription className="text-slate-300 text-sm">
-                      Completa el formulario y te contactaremos en menos de 24 horas
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  <form onSubmit={handleDemoSubmit} className="space-y-4 py-4">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <Label htmlFor="nombre" className="text-sm font-medium text-slate-200 mb-1 block">
-                          Nombre *
-                        </Label>
-                        <Input
-                          id="nombre"
-                          value={formData.nombre}
-                          onChange={handleInputChange}
-                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Tu nombre"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="apellidos" className="text-sm font-medium text-slate-200 mb-1 block">
-                          Apellidos
-                        </Label>
-                        <Input
-                          id="apellidos"
-                          value={formData.apellidos}
-                          onChange={handleInputChange}
-                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Tus apellidos"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="email" className="text-sm font-medium text-slate-200 mb-1 block">
-                        Email *
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="nombre@empresa.com"
-                        required
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <Label htmlFor="telefono" className="text-sm font-medium text-slate-200 mb-1 block">
-                          Teléfono
-                        </Label>
-                        <Input
-                          id="telefono"
-                          type="tel"
-                          value={formData.telefono}
-                          onChange={handleInputChange}
-                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="+34 600 000 000"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="empresa" className="text-sm font-medium text-slate-200 mb-1 block">
-                          Empresa
-                        </Label>
-                        <Input
-                          id="empresa"
-                          value={formData.empresa}
-                          onChange={handleInputChange}
-                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Tu empresa"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="tipo_negocio" className="text-sm font-medium text-slate-200 mb-1 block">
-                        Tipo de Negocio
-                      </Label>
-                      <Input
-                        id="tipo_negocio"
-                        value={formData.tipo_negocio}
-                        onChange={handleInputChange}
-                        className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="E-commerce, Educación, Consultoría..."
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="descripcion_solicitud" className="text-sm font-medium text-slate-200 mb-1 block">
-                        Descripción *
-                      </Label>
-                      <Textarea
-                        id="descripcion_solicitud"
-                        value={formData.descripcion_solicitud}
-                        onChange={handleInputChange}
-                        className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500 min-h-[80px] resize-none"
-                        placeholder="Describe brevemente qué necesitas y para qué tipo de negocio..."
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="presupuesto_estimado" className="text-sm font-medium text-slate-200 mb-1 block">
-                        Presupuesto *
-                      </Label>
-                      <Select
-                        onValueChange={(value) => handleSelectChange(value, 'presupuesto_estimado')}
-                        value={formData.presupuesto_estimado}
-                        required
-                      >
-                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white focus:border-blue-500">
-                          <SelectValue placeholder="Selecciona un rango" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-600">
-                          <SelectItem value="250-1000" className="text-white hover:bg-slate-700">250 € a 1.000 € (+IVA)</SelectItem>
-                          <SelectItem value="1000-2500" className="text-white hover:bg-slate-700">1.000 € a 2.500 € (+IVA)</SelectItem>
-                          <SelectItem value="2500-5000" className="text-white hover:bg-slate-700">2.500 € a 5.000 € (+IVA)</SelectItem>
-                          <SelectItem value="5000+" className="text-white hover:bg-slate-700">Más de 5.000 € (+IVA)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <DialogFooter className="pt-4 border-t border-slate-600/50">
-                      <Button
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-xl transition-all duration-300"
-                      >
-                        <Rocket className="w-4 h-4 mr-2" />
-                        Enviar Solicitud
-                      </Button>
-                    </DialogFooter>
-                  </form>
-                </DialogContent>
-              </Dialog>
-
-              {/* Schedule button - SAME SIZE */}
-              <motion.div
-                whileHover={{ 
-                  scale: 1.08, 
-                  y: -6
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
-                <Button
-                  onClick={handleScheduleMeeting}
-                  size="lg"
-                  className="relative bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
-                    initial={{ x: "-300%" }}
-                    whileHover={{ x: "300%" }}
-                    transition={{ duration: 1.2 }}
-                  />
-                  <span className="relative z-10 flex items-center">
-                    <Calendar className="w-5 h-5 mr-2" />
-                    Agenda Reunión
-                    <Play className="w-5 h-5 ml-2" />
-                  </span>
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            {/* Trust indicators */}
-            <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 mt-8 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ 
-                opacity: animationStage >= 6 ? 1 : 0, 
-                y: animationStage >= 6 ? 0 : 40 
-              }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              {[
-                { icon: Shield, text: "100% Seguro", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-emerald-600/20" },
-                { icon: Zap, text: "Setup en 48h", color: "text-blue-400", bgColor: "from-blue-500/20 to-blue-600/20" },
-                { icon: Sparkles, text: "IA Personalizada", color: "text-blue-300", bgColor: "from-blue-400/20 to-blue-500/20" }
-              ].map((item, index) => (
                 <motion.div
-                  key={index}
-                  className={`flex items-center gap-3 text-sm text-gray-300 px-4 py-2 rounded-full bg-gradient-to-r ${item.bgColor} backdrop-blur-sm border border-white/10`}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ 
-                    opacity: animationStage >= 6 ? 1 : 0, 
-                    scale: animationStage >= 6 ? 1 : 0.8,
-                    y: animationStage >= 6 ? 0 : 20
+                  className="absolute -inset-8 bg-gradient-to-r from-blue-600/50 to-emerald-600/50 rounded-full blur-3xl"
+                  animate={{
+                    scale: isHovering ? 1.4 : 1,
+                    opacity: isHovering ? 0.9 : 0.6,
                   }}
                   transition={{ 
-                    delay: 0.5 + index * 0.15, 
-                    type: "spring",
-                    stiffness: 300
+                    scale: { duration: 0.5, ease: "easeOut" },
+                    opacity: { duration: 0.5 },
                   }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    y: -5,
-                    boxShadow: `0 10px 30px ${item.color.replace('text-', 'rgba(')}`,
-                  }}
-                >
-                  <span>
-                    <item.icon className={`w-5 h-5 ${item.color}`} />
-                  </span>
-                  <span className="font-medium">{item.text}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right column - Premium chat interface */}
-          <motion.div
-            className="relative hidden lg:flex justify-center items-center perspective-1000 h-full w-full"
-            style={{ y: y2 }}
-            variants={chatVariants}
-            initial="hidden"
-            animate={animationStage >= 5 ? "visible" : "hidden"}
-          >
-            <div className="relative max-w-md mx-auto">
-              {/* Enhanced glass effect chat container */}
-              <motion.div 
-                className="relative rounded-3xl p-6 bg-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-3xl overflow-hidden"
-                whileHover={{ 
-                  scale: 1.02
-                }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                style={{
-                  transform: `translate3d(${smoothMouseX * -0.03}px, ${smoothMouseY * -0.03}px, 0)`
-                }}
-                animate={{
-                  boxShadow: [
-                    "0 25px 50px rgba(0,0,0,0.4)",
-                    "0 35px 70px rgba(37,99,235,0.3)",
-                    "0 25px 50px rgba(0,0,0,0.4)"
-                  ],
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  boxShadow: { duration: 6, repeat: Infinity },
-                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                }}
-              >
-                {/* Animated background glow */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-600/15 via-blue-500/15 to-emerald-600/15 rounded-3xl"
-                  animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                    scale: [1, 1.01, 1],
-                  }}
-                  transition={{ duration: 8, repeat: Infinity }}
                 />
+                <motion.img
+                  src={logoAlquimiaDigital}
+                  alt="Alquimia Digital Logo"
+                  className="relative mx-auto lg:mx-0 h-48 md:h-64 lg:h-80 w-auto transform-gpu"
+                  whileHover={{ 
+                    scale: 1.1,
+                    z: 50,
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  style={{
+                    filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))',
+                    transform: `translate3d(${smoothMouseX * 0.08}px, ${smoothMouseY * 0.08}px, 0)`
+                  }}
+                />
+              </motion.div>
 
-                {/* Chat header */}
-                <motion.div 
-                  className="relative flex items-center gap-3 mb-5 pb-3 border-b border-slate-600/40"
-                  initial={{ opacity: 0, y: -15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+              {/* Title with orchestrated stagger - BIGGER ON MOBILE */}
+              <motion.h1 
+                className="text-6xl xs:text-7xl sm:text-7xl md:text-6xl xl:text-8xl font-bold mb-6 leading-tight text-left w-full"
+                variants={titleVariants}
+                initial="hidden"
+                animate={animationStage >= 3 ? "visible" : "hidden"}
+              >
+                <motion.span 
+                  className="block bg-gradient-to-r from-blue-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent"
+                  variants={titleLineVariants}
+                  style={{
+                    backgroundSize: '300% 300%',
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                  }}
+                  transition={{ 
+                    backgroundPosition: { duration: 8, repeat: Infinity }
+                  }}
                 >
-                  <motion.div 
-                    className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center relative"
+                  Tu conocimiento,
+                </motion.span>
+                
+                <motion.span 
+                  className="block text-white"
+                  variants={titleLineVariants}
+                >
+                  disponible
+                </motion.span>
+                
+                <motion.span 
+                  className="block bg-gradient-to-r from-emerald-400 via-blue-400 to-blue-500 bg-clip-text text-transparent"
+                  variants={titleLineVariants}
+                >
+                  24/7 con IA
+                </motion.span>
+              </motion.h1>
+
+              {/* Description with premium entrance - SMALLER COMPACT CARD */}
+              <motion.div
+                className="relative flex justify-start w-full"
+                variants={descriptionVariants}
+                initial="hidden"
+                animate={animationStage >= 4 ? "visible" : "hidden"}
+              >
+                <p className="relative text-sm xs:text-base md:text-lg xl:text-xl text-gray-300 mb-4 leading-relaxed p-2 sm:p-3 md:p-4 xl:p-5 bg-slate-900/50 backdrop-blur-2xl rounded-xl border border-white/20 w-full">
+                  Creamos asistentes personalizados con IA que entienden tu negocio,
+                  responden dudas y automatizan tareas,{' '}
+                  <motion.span 
+                    className="text-emerald-400 font-semibold"
                     animate={{
-                      boxShadow: [
-                        "0 0 15px rgba(37,99,235,0.5)",
-                        "0 0 25px rgba(37,99,235,0.7)",
-                        "0 0 15px rgba(37,99,235,0.5)"
+                      textShadow: [
+                        "0 0 10px rgba(16, 185, 129, 0.6)",
+                        "0 0 30px rgba(16, 185, 129, 1)",
+                        "0 0 10px rgba(16, 185, 129, 0.6)"
                       ]
                     }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <Bot className="w-4 h-4 text-white" />
+                    sin alucinar
+                  </motion.span>
+                  .
+                </p>
+              </motion.div>
+
+              {/* Buttons with premium entrance - SAME SIZE BUTTONS */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
+                variants={buttonVariants}
+                initial="hidden"
+                animate={animationStage >= 4 ? "visible" : "hidden"}
+              >
+                {/* Demo button - SAME SIZE AS SCHEDULE BUTTON */}
+                <Dialog open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen}>
+                  <DialogTrigger asChild>
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-full"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        y: -6
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Button
+                        size="lg"
+                        className="relative bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
+                      >
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
+                          initial={{ x: "-300%" }}
+                          whileHover={{ x: "300%" }}
+                          transition={{ duration: 1.2 }}
+                        />
+                        
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-blue-500/70"
+                          animate={{
+                            opacity: [0.7, 1, 0.7]
+                          }}
+                          transition={{ duration: 4, repeat: Infinity }}
+                        />
+                        
+                        <span className="relative z-10 flex items-center">
+                          <Zap className="w-5 h-5 mr-2" />
+                          Solicitar Demo
+                          <ArrowRight className="w-5 h-5 ml-2" />
+                        </span>
+                      </Button>
+                    </motion.div>
+                  </DialogTrigger>
+
+                  {/* Modal with correct styling */}
+                  <DialogContent className="sm:max-w-[450px] max-h-[90vh] overflow-y-auto bg-slate-900/95 backdrop-blur-xl text-white border border-slate-600/50 rounded-2xl shadow-2xl">
+                    <DialogHeader className="pb-4 border-b border-slate-600/50">
+                      <DialogTitle className="text-xl font-bold text-white">
+                        Solicita tu Demo Personalizada
+                      </DialogTitle>
+                      <DialogDescription className="text-slate-300 text-sm">
+                        Completa el formulario y te contactaremos en menos de 24 horas
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    <form onSubmit={handleDemoSubmit} className="space-y-4 py-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <Label htmlFor="nombre" className="text-sm font-medium text-slate-200 mb-1 block">
+                            Nombre *
+                          </Label>
+                          <Input
+                            id="nombre"
+                            value={formData.nombre}
+                            onChange={handleInputChange}
+                            className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Tu nombre"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="apellidos" className="text-sm font-medium text-slate-200 mb-1 block">
+                            Apellidos
+                          </Label>
+                          <Input
+                            id="apellidos"
+                            value={formData.apellidos}
+                            onChange={handleInputChange}
+                            className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Tus apellidos"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email" className="text-sm font-medium text-slate-200 mb-1 block">
+                          Email *
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="nombre@empresa.com"
+                          required
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <Label htmlFor="telefono" className="text-sm font-medium text-slate-200 mb-1 block">
+                            Teléfono
+                          </Label>
+                          <Input
+                            id="telefono"
+                            type="tel"
+                            value={formData.telefono}
+                            onChange={handleInputChange}
+                            className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="+34 600 000 000"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="empresa" className="text-sm font-medium text-slate-200 mb-1 block">
+                            Empresa
+                          </Label>
+                          <Input
+                            id="empresa"
+                            value={formData.empresa}
+                            onChange={handleInputChange}
+                            className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Tu empresa"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="tipo_negocio" className="text-sm font-medium text-slate-200 mb-1 block">
+                          Tipo de Negocio
+                        </Label>
+                        <Input
+                          id="tipo_negocio"
+                          value={formData.tipo_negocio}
+                          onChange={handleInputChange}
+                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="E-commerce, Educación, Consultoría..."
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="descripcion_solicitud" className="text-sm font-medium text-slate-200 mb-1 block">
+                          Descripción *
+                        </Label>
+                        <Textarea
+                          id="descripcion_solicitud"
+                          value={formData.descripcion_solicitud}
+                          onChange={handleInputChange}
+                          className="bg-slate-800 border-slate-600 text-white focus:border-blue-500 focus:ring-blue-500 min-h-[80px] resize-none"
+                          placeholder="Describe brevemente qué necesitas y para qué tipo de negocio..."
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="presupuesto_estimado" className="text-sm font-medium text-slate-200 mb-1 block">
+                          Presupuesto *
+                        </Label>
+                        <Select
+                          onValueChange={(value) => handleSelectChange(value, 'presupuesto_estimado')}
+                          value={formData.presupuesto_estimado}
+                          required
+                        >
+                          <SelectTrigger className="bg-slate-800 border-slate-600 text-white focus:border-blue-500">
+                            <SelectValue placeholder="Selecciona un rango" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-slate-800 border-slate-600">
+                            <SelectItem value="250-1000" className="text-white hover:bg-slate-700">250 € a 1.000 € (+IVA)</SelectItem>
+                            <SelectItem value="1000-2500" className="text-white hover:bg-slate-700">1.000 € a 2.500 € (+IVA)</SelectItem>
+                            <SelectItem value="2500-5000" className="text-white hover:bg-slate-700">2.500 € a 5.000 € (+IVA)</SelectItem>
+                            <SelectItem value="5000+" className="text-white hover:bg-slate-700">Más de 5.000 € (+IVA)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <DialogFooter className="pt-4 border-t border-slate-600/50">
+                        <Button
+                          type="submit"
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-xl transition-all duration-300"
+                        >
+                          <Rocket className="w-4 h-4 mr-2" />
+                          Enviar Solicitud
+                        </Button>
+                      </DialogFooter>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+
+                {/* Schedule button - SAME SIZE */}
+                <motion.div
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -6
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                >
+                  <Button
+                    onClick={handleScheduleMeeting}
+                    size="lg"
+                    className="relative bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden group px-6 py-4 text-sm sm:text-base transform-gpu"
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
+                      initial={{ x: "-300%" }}
+                      whileHover={{ x: "300%" }}
+                      transition={{ duration: 1.2 }}
                     />
+                    <span className="relative z-10 flex items-center">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Agenda Reunión
+                      <Play className="w-5 h-5 ml-2" />
+                    </span>
+                  </Button>
+                </motion.div>
+              </motion.div>
+
+              {/* Trust indicators */}
+              <motion.div
+                className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 mt-8 max-w-xs sm:max-w-sm md:max-w-lg md:mx-auto lg:max-w-none mx-auto lg:mx-0"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ 
+                  opacity: animationStage >= 6 ? 1 : 0, 
+                  y: animationStage >= 6 ? 0 : 40 
+                }}
+                transition={{ duration: 1, delay: 0.3 }}
+              >
+                {[
+                  { icon: Shield, text: "100% Seguro", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-emerald-600/20" },
+                  { icon: Zap, text: "Setup en 48h", color: "text-blue-400", bgColor: "from-blue-500/20 to-blue-600/20" },
+                  { icon: Sparkles, text: "IA Personalizada", color: "text-blue-300", bgColor: "from-blue-400/20 to-blue-500/20" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className={`flex items-center gap-3 text-sm text-gray-300 px-4 py-2 rounded-full bg-gradient-to-r ${item.bgColor} backdrop-blur-sm border border-white/10`}
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ 
+                      opacity: animationStage >= 6 ? 1 : 0, 
+                      scale: animationStage >= 6 ? 1 : 0.8,
+                      y: animationStage >= 6 ? 0 : 20
+                    }}
+                    transition={{ 
+                      delay: 0.5 + index * 0.15, 
+                      type: "spring",
+                      stiffness: 300
+                    }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      y: -5,
+                      boxShadow: `0 10px 30px ${item.color.replace('text-', 'rgba(')}`,
+                    }}
+                  >
+                    <span>
+                      <item.icon className={`w-5 h-5 ${item.color}`} />
+                    </span>
+                    <span className="font-medium">{item.text}</span>
                   </motion.div>
-                  <div>
-                    <span className="text-white font-medium text-sm">Asistente IA</span>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <motion.div 
-                        className="w-1.5 h-1.5 bg-emerald-400 rounded-full"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Right column - Premium chat interface */}
+            <motion.div
+              className="relative hidden lg:flex justify-center items-center perspective-1000 h-full w-full"
+              style={{ y: y2 }}
+              variants={chatVariants}
+              initial="hidden"
+              animate={animationStage >= 5 ? "visible" : "hidden"}
+            >
+              <div className="relative max-w-md mx-auto">
+                {/* Enhanced glass effect chat container */}
+                <motion.div 
+                  className="relative rounded-3xl p-6 bg-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-3xl overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.02
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  style={{
+                    transform: `translate3d(${smoothMouseX * -0.03}px, ${smoothMouseY * -0.03}px, 0)`
+                  }}
+                  animate={{
+                    boxShadow: [
+                      "0 25px 50px rgba(0,0,0,0.4)",
+                      "0 35px 70px rgba(37,99,235,0.3)",
+                      "0 25px 50px rgba(0,0,0,0.4)"
+                    ],
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    boxShadow: { duration: 6, repeat: Infinity },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                >
+                  {/* Animated background glow */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-blue-600/15 via-blue-500/15 to-emerald-600/15 rounded-3xl"
+                    animate={{
+                      opacity: [0.2, 0.4, 0.2],
+                      scale: [1, 1.01, 1],
+                    }}
+                    transition={{ duration: 8, repeat: Infinity }}
+                  />
+
+                  {/* Chat header */}
+                  <motion.div 
+                    className="relative flex items-center gap-3 mb-5 pb-3 border-b border-slate-600/40"
+                    initial={{ opacity: 0, y: -15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <motion.div 
+                      className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center relative"
+                      animate={{
+                        boxShadow: [
+                          "0 0 15px rgba(37,99,235,0.5)",
+                          "0 0 25px rgba(37,99,235,0.7)",
+                          "0 0 15px rgba(37,99,235,0.5)"
+                        ]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      <Bot className="w-4 h-4 text-white" />
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-full"
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                       />
-                      <span className="text-emerald-400 text-xs">En línea</span>
+                    </motion.div>
+                    <div>
+                      <span className="text-white font-medium text-sm">Asistente IA</span>
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <motion.div 
+                          className="w-1.5 h-1.5 bg-emerald-400 rounded-full"
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                        <span className="text-emerald-400 text-xs">En línea</span>
+                      </div>
                     </div>
+                  </motion.div>
+
+                  {/* Chat messages */}
+                  <div className="space-y-4 relative">
+                    <motion.div 
+                      className="chat-bubble user-message bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3 rounded-xl ml-auto max-w-[85%] shadow-md"
+                      initial={{ opacity: 0, x: 30, scale: 0.9 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      transition={{ delay: 0.8, type: "spring", stiffness: 400 }}
+                    >
+                      <p className="text-xs font-medium">¿Cuál es nuestra política de devoluciones?</p>
+                    </motion.div>
+
+                    <motion.div 
+                      className="chat-bubble assistant-message bg-gradient-to-r from-blue-700 to-blue-600 text-white p-3 rounded-xl mr-auto max-w-[90%] shadow-md"
+                      initial={{ opacity: 0, x: -30, scale: 0.9 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      transition={{ delay: 1.4, type: "spring", stiffness: 400 }}
+                    >
+                      <p className="text-xs font-medium leading-relaxed">
+                        Según nuestras políticas, tienes 30 días para solicitar una devolución. 
+                        Te ayudo con el proceso...
+                      </p>
+                    </motion.div>
+
+                    {/* Typing dots */}
+                    <motion.div 
+                      className="flex items-center gap-1 pl-3"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 2 }}
+                    >
+                      <div className="flex gap-1">
+                        {[0, 1, 2].map((i) => (
+                          <motion.span
+                            key={i}
+                            className="w-2 h-2 bg-blue-400 rounded-full"
+                            animate={{
+                              y: [0, -8, 0],
+                              opacity: [0.5, 1, 0.5],
+                              scale: [1, 1.2, 1]
+                            }}
+                            transition={{
+                              duration: 1.2,
+                              repeat: Infinity,
+                              delay: i * 0.2
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
                   </div>
                 </motion.div>
 
-                {/* Chat messages */}
-                <div className="space-y-4 relative">
-                  <motion.div 
-                    className="chat-bubble user-message bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3 rounded-xl ml-auto max-w-[85%] shadow-md"
-                    initial={{ opacity: 0, x: 30, scale: 0.9 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    transition={{ delay: 0.8, type: "spring", stiffness: 400 }}
-                  >
-                    <p className="text-xs font-medium">¿Cuál es nuestra política de devoluciones?</p>
-                  </motion.div>
-
-                  <motion.div 
-                    className="chat-bubble assistant-message bg-gradient-to-r from-blue-700 to-blue-600 text-white p-3 rounded-xl mr-auto max-w-[90%] shadow-md"
-                    initial={{ opacity: 0, x: -30, scale: 0.9 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    transition={{ delay: 1.4, type: "spring", stiffness: 400 }}
-                  >
-                    <p className="text-xs font-medium leading-relaxed">
-                      Según nuestras políticas, tienes 30 días para solicitar una devolución. 
-                      Te ayudo con el proceso...
-                    </p>
-                  </motion.div>
-
-                  {/* Typing dots */}
-                  <motion.div 
-                    className="flex items-center gap-1 pl-3"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2 }}
-                  >
-                    <div className="flex gap-1">
-                      {[0, 1, 2].map((i) => (
-                        <motion.span
-                          key={i}
-                          className="w-2 h-2 bg-blue-400 rounded-full"
-                          animate={{
-                            y: [0, -8, 0],
-                            opacity: [0.5, 1, 0.5],
-                            scale: [1, 1.2, 1]
-                          }}
-                          transition={{
-                            duration: 1.2,
-                            repeat: Infinity,
-                            delay: i * 0.2
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Enhanced floating brain icon */}
-              <motion.div 
-                className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-3 border-white/20"
-                animate={{
-                  y: [0, -12, 0],
-                  boxShadow: [
-                    "0 15px 30px rgba(37,99,235,0.4)",
-                    "0 25px 50px rgba(16,185,129,0.6)",
-                    "0 15px 30px rgba(37,99,235,0.4)"
-                  ]
-                }}
-                transition={{ 
-                  duration: 5, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                whileHover={{ 
-                  scale: 1.1,
-                }}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ 
-                  opacity: animationStage >= 5 ? 1 : 0, 
-                  scale: animationStage >= 5 ? 1 : 0.5 
-                }}
-                transition={{ delay: 1 }}
-              >
-                <Brain className="w-8 h-8 text-white" />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-full"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+                {/* Enhanced floating brain icon */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-3 border-white/20"
+                  animate={{
+                    y: [0, -12, 0],
+                    boxShadow: [
+                      "0 15px 30px rgba(37,99,235,0.4)",
+                      "0 25px 50px rgba(16,185,129,0.6)",
+                      "0 15px 30px rgba(37,99,235,0.4)"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  whileHover={{ 
+                    scale: 1.1,
+                  }}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ 
+                    opacity: animationStage >= 5 ? 1 : 0, 
+                    scale: animationStage >= 5 ? 1 : 0.5 
+                  }}
+                  transition={{ delay: 1 }}
+                >
+                  <Brain className="w-8 h-8 text-white" />
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-full"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
 
-      {/* Decorative elements */}
-      <motion.div 
-        className="absolute top-12 right-12 w-4 h-4 bg-blue-400 rounded-full"
-        animate={{ 
-          scale: [1, 1.8, 1],
-          opacity: [0.4, 1, 0.4],
-        }}
-        transition={{ duration: 4, repeat: Infinity }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 6 ? [0.4, 1, 0.4] : 0 }}
-      />
-      <motion.div 
-        className="absolute bottom-24 left-12 w-3 h-3 bg-emerald-400 rounded-full"
-        animate={{ 
-          scale: [1, 1.5, 1],
-          opacity: [0.6, 1, 0.6],
-          x: [0, 10, 0]
-        }}
-        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 6 ? [0.6, 1, 0.6] : 0 }}
-      />
-      <motion.div 
-        className="absolute top-1/3 left-12 w-2 h-2 bg-blue-300 rounded-full"
-        animate={{ 
-          y: [0, -30, 0],
-          opacity: [0.3, 0.9, 0.3],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 6 ? [0.3, 0.9, 0.3] : 0 }}
-      />
-      
-      <motion.div 
-        className="absolute top-1/4 right-1/4 w-2 h-2 bg-emerald-300 rounded-full"
-        animate={{ 
-          x: [0, 25, 0],
-          y: [0, -20, 0],
-          opacity: [0.2, 0.8, 0.2],
-          scale: [0.8, 1.4, 0.8]
-        }}
-        transition={{ duration: 7, repeat: Infinity, delay: 2.5 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 6 ? [0.2, 0.8, 0.2] : 0 }}
-      />
-      <motion.div 
-        className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-blue-500 rounded-full"
-        animate={{ 
-          rotate: [0, 360],
-          scale: [0.9, 1.4, 0.9],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{ duration: 8, repeat: Infinity, delay: 3 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationStage >= 6 ? [0.5, 1, 0.5] : 0 }}
-      />
-    </motion.section>
+        {/* Decorative elements */}
+        <motion.div 
+          className="absolute top-12 right-12 w-4 h-4 bg-blue-400 rounded-full"
+          initial={{ opacity: 0 }}
+          animate={animationStage >= 6 ? { scale: [1, 1.8, 1], opacity: [0.4, 1, 0.4] } : { opacity: 0 }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute bottom-24 left-12 w-3 h-3 bg-emerald-400 rounded-full"
+          initial={{ opacity: 0 }}
+          animate={animationStage >= 6 ? { scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6], x: [0, 10, 0] } : { opacity: 0 }}
+          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+        />
+        <motion.div 
+          className="absolute top-1/3 left-12 w-2 h-2 bg-blue-300 rounded-full"
+          initial={{ opacity: 0 }}
+          animate={animationStage >= 6 ? { y: [0, -30, 0], opacity: [0.3, 0.9, 0.3], scale: [1, 1.3, 1] } : { opacity: 0 }}
+          transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+        />
+        
+        <motion.div 
+          className="absolute top-1/4 right-1/4 w-2 h-2 bg-emerald-300 rounded-full"
+          initial={{ opacity: 0 }}
+          animate={animationStage >= 6 ? { x: [0, 25, 0], y: [0, -20, 0], opacity: [0.2, 0.8, 0.2], scale: [0.8, 1.4, 0.8] } : { opacity: 0 }}
+          transition={{ duration: 7, repeat: Infinity, delay: 2.5 }}
+        />
+        <motion.div 
+          className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-blue-500 rounded-full"
+          animate={{ 
+            rotate: [0, 360],
+            scale: [0.9, 1.4, 0.9],
+            opacity: [0.5, 1, 0.5]
+          }}
+          transition={{ duration: 8, repeat: Infinity, delay: 3 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animationStage >= 6 ? [0.5, 1, 0.5] : 0 }}
+        />
+      </motion.section>
+    </>
   );
 };
 

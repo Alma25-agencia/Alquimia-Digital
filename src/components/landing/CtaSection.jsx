@@ -110,7 +110,7 @@ const CtaSection = () => {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="contacto" className="relative py-20 overflow-hidden">
       {/* Fondo con gradiente mejorado y nueva paleta */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-primary-800/20 to-accent-900/30"></div>
       

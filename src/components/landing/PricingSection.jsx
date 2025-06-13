@@ -164,7 +164,7 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen py-20 overflow-hidden">
+    <section id="precios" className="relative py-24 overflow-hidden">
       {/* Fondo animado premium - CORREGIDO */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950/50 to-slate-900"></div>
       
